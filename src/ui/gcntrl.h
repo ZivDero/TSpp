@@ -40,7 +40,7 @@ public:
     virtual void Make_Peer(GadgetClass& gadget);
     virtual bool Draw_Me(bool forced = false) override;
     virtual unsigned Get_ID() const override;
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
 public:
     unsigned ID;

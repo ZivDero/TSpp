@@ -37,7 +37,7 @@ public:
     virtual ~GaugeClass();
 
     virtual bool Draw_Me(bool forced = false) override;
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     virtual int Set_Maximum(int value);
     virtual int Set_Value(int value);

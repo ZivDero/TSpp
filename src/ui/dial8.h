@@ -37,7 +37,7 @@ public:
     virtual ~Dial8Class();
 
     virtual bool Draw_Me(bool forced = false) override;
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     Dir256 Get_Direction() const;
     void Set_Direction(Dir256 dir);

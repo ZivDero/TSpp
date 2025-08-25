@@ -53,7 +53,7 @@ public:
     CheckListClass(int id, int x, int y, int w, int h, TextPrintType flags, const void* up, const void* down);
     virtual ~CheckListClass();
 
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     virtual int Add_Item(int text) override;
     virtual int Add_Item(const char* text) override;

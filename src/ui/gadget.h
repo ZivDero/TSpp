@@ -93,7 +93,7 @@ public:
     virtual void Set_Size(int w, int h);
     virtual bool Draw_Me(bool forced = false);
     virtual void Sticky_Process(unsigned flags);
-    virtual bool Action(unsigned flags, KeyNumType& key);
+    virtual int Action(unsigned flags, KeyNumType& key);
     virtual bool Clicked_On(KeyNumType& key, unsigned flags, int mouse_x, int mouse_y);
 
     bool Is_Enabled() const { return !IsDisabled; }

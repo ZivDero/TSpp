@@ -36,7 +36,7 @@ public:
     ToggleClass(unsigned id, int x, int y, int w, int h);
     ~ToggleClass();
 
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     void Turn_On();
     void Turn_Off();

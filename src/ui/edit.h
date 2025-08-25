@@ -48,7 +48,7 @@ public:
 
     virtual void Set_Focus() override;
     virtual bool Draw_Me(bool forced = false) override;
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     virtual void Set_Text(const char* text, int max_len);
     virtual const char* Get_Text();

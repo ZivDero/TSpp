@@ -139,7 +139,7 @@ public:
             SelectClass();
             SelectClass(const NoInitClass& x);
 
-            virtual bool Action(unsigned flags, KeyNumType& key) override;
+            virtual int Action(unsigned flags, KeyNumType& key) override;
 
             void Set_Owner(StripClass& strip, int index);
 
@@ -259,11 +259,11 @@ public:
 
     } Column[COLUMNS];
 
-    bool field_1CD4; // toggles cameo text?
+    bool IsCameoText; // toggles cameo text?
     bool IsSidebarActive;
     bool IsToRedraw;
     bool IsToFullRedraw; // another redraw flag?
-    bool field_1CD8;
+    bool IsToRedrawCredits;
     bool IsRepairActive;
     bool IsUpgradeActive;
     bool IsDemolishActive;
@@ -274,7 +274,7 @@ public:
     public:
         SBGadgetClass();
 
-        virtual bool Action(unsigned flags, KeyNumType& key) override;
+        virtual int Action(unsigned flags, KeyNumType& key) override;
     };
 
     static ShapeButtonClass& Repair;
@@ -284,4 +284,4 @@ public:
     static SBGadgetClass& Background;
 };
 
-void Print_Cameo_Text(const char* string, Point2D& pos, Rect& bounds, int max_width);
+void Print_Cameo_Text(const char* string, const Point2D& pos, const Rect& bounds, int max_width);

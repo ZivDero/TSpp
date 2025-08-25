@@ -757,12 +757,12 @@ DEFINE_IMPLEMENTATION(bool GameOptionsType::Save(IStream*), 0x005EFFA0);
 DEFINE_IMPLEMENTATION(bool GameOptionsType::Load(IStream*), 0x005EFFF0);
 
 DEFINE_IMPLEMENTATION(int Format_Window_String(char*, WWFontClass*, int, int&, int&), 0x00474960);
-DEFINE_IMPLEMENTATION(Point2D Simple_Text_Print(const char*, XSurface*, Rect*, Point2D*, ColorScheme*, unsigned, TextPrintType, int), 0x00474A50);
-DEFINE_IMPLEMENTATION(Point2D Plain_Text_Print(int, XSurface*, Rect*, Point2D*, unsigned, unsigned, TextPrintType, ColorSchemeType, int), 0x00475170);
-DEFINE_IMPLEMENTATION(Point2D Plain_Text_Print(char const*, XSurface*, Rect*, Point2D*, unsigned, unsigned, TextPrintType, ColorSchemeType, int), 0x004751D0);
-DEFINE_IMPLEMENTATION(Point2D Fancy_Text_Print(int, XSurface*, Rect*, Point2D*, ColorScheme*, unsigned, TextPrintType, ...), 0x00474D90);
-DEFINE_IMPLEMENTATION(Point2D Fancy_Text_Print(const char*, XSurface*, Rect*, Point2D*, ColorScheme*, unsigned, TextPrintType, ...), 0x00474E70);
-DEFINE_IMPLEMENTATION(Point2D Conquer_Clip_Text_Print(const char*, XSurface*, Rect*, Point2D*, ColorScheme*, unsigned, TextPrintType, int, const int*), 0x00474F50);
+DEFINE_IMPLEMENTATION(Point2D __cdecl Fancy_Text_Print(char const*, Surface&, Rect const&, Point2D const&, ColorScheme*, int, TextPrintType, ...), 0x00474E70);
+DEFINE_IMPLEMENTATION(Point2D __cdecl Fancy_Text_Print(int, Surface&, Rect const&, Point2D const&, ColorScheme*, int, TextPrintType, ...), 0x00474D90);
+DEFINE_IMPLEMENTATION(Point2D Simple_Text_Print(char const*, Surface&, Rect const&, Point2D const&, ColorScheme*, int, TextPrintType, int), 0x00474A50);
+DEFINE_IMPLEMENTATION(Point2D Plain_Text_Print(int, Surface&, Rect const&, Point2D const&, int, int, TextPrintType, int, int), 0x00475170);
+DEFINE_IMPLEMENTATION(Point2D Plain_Text_Print(char const*, Surface&, Rect const&, Point2D const&, int, int, TextPrintType, int, int), 0x004751D0);
+DEFINE_IMPLEMENTATION(Point2D Conquer_Clip_Text_Print(char const*, Surface&, Rect const&, Point2D const&, ColorScheme*, int, TextPrintType, int, int const*), 0x00474F50);
 
 INIClass::INIClass() : SectionList(), SectionIndex(), LineComments(nullptr) { *((unsigned long*)this) = (unsigned long)0x006D193C; }
 INIClass::INIClass(FileClass& file, bool load_comments) : SectionList(), SectionIndex(), LineComments(nullptr) { Load(file, load_comments); *((unsigned long*)this) = (unsigned long)0x006D193C; }
@@ -1987,7 +1987,7 @@ DEFINE_IMPLEMENTATION(void GadgetClass::Set_Position(int, int), 0x004AA170);
 DEFINE_IMPLEMENTATION(void GadgetClass::Set_Size(int, int), 0x004AA190);
 DEFINE_IMPLEMENTATION(bool GadgetClass::Draw_Me(bool), 0x004A9E20);
 DEFINE_IMPLEMENTATION(void GadgetClass::Sticky_Process(unsigned), 0x004AA0C0);
-DEFINE_IMPLEMENTATION(bool GadgetClass::Action(unsigned, KeyNumType&), 0x004A9E00);
+DEFINE_IMPLEMENTATION(int GadgetClass::Action(unsigned, KeyNumType&), 0x004A9E00);
 DEFINE_IMPLEMENTATION(bool GadgetClass::Clicked_On(KeyNumType&, unsigned, int, int), 0x004A9CF0);
 DEFINE_IMPLEMENTATION(ColorSchemeType GadgetClass::Get_Color_Scheme(), 0x004A9BD0);
 
@@ -1997,7 +1997,7 @@ ControlClass::ControlClass(const NoInitClass& x) : GadgetClass(x) { *((unsigned 
 DEFINE_IMPLEMENTATION(void ControlClass::Make_Peer(GadgetClass&), 0x00463B00);
 DEFINE_IMPLEMENTATION(bool ControlClass::Draw_Me(bool), 0x00463B20);
 DEFINE_IMPLEMENTATION(unsigned ControlClass::Get_ID() const, 0x00463B10);
-DEFINE_IMPLEMENTATION(bool ControlClass::Action(unsigned, KeyNumType&), 0x00463AA0);
+DEFINE_IMPLEMENTATION(int ControlClass::Action(unsigned, KeyNumType&), 0x00463AA0);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(DisplayClass::DisplayClass(), 0x00475BA0);
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(DisplayClass::DisplayClass(const NoInitClass &), 0x005F6950);
@@ -2057,7 +2057,7 @@ DEFINE_IMPLEMENTATION(void DisplayClass::Update_Cell_Colors(), 0x0047AEF0);
 DEFINE_IMPLEMENTATION(ObjectClass* DisplayClass::Object_To_Follow() const, 0x0047C0C0);
 DEFINE_IMPLEMENTATION(void DisplayClass::Set_To_Follow(ObjectClass*), 0x0047C0E0);
 DisplayClass::TacticalClass::TacticalClass() : GadgetClass(0, 0, 0, 0, LEFTPRESS | LEFTRELEASE | LEFTHELD | LEFTUP | RIGHTPRESS | RIGHTRELEASE | RIGHTHELD, true) { *((unsigned long*)this) = (unsigned long)0x006CDB08; }
-DEFINE_IMPLEMENTATION(bool DisplayClass::TacticalClass::Action(unsigned, KeyNumType&), 0x00477C10);
+DEFINE_IMPLEMENTATION(int DisplayClass::TacticalClass::Action(unsigned, KeyNumType&), 0x00477C10);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(CreditClass::CreditClass(), 0x00471440);
 CreditClass::CreditClass(const NoInitClass& x) {}
@@ -2119,11 +2119,10 @@ DEFINE_IMPLEMENTATION(bool RadarClass::Is_Player_Names(), 0x005BC150);
 DEFINE_IMPLEMENTATION(void RadarClass::Redraw_Radar(bool), 0x005BC190);
 DEFINE_IMPLEMENTATION(void RadarClass::Total_Radar_Refresh(), 0x005BCE90);
 RadarClass::RTacticalClass::RTacticalClass() : GadgetClass(0, 0, 0, 0, LEFTPRESS | LEFTRELEASE | LEFTHELD | LEFTUP | RIGHTPRESS, true) {}
-DEFINE_IMPLEMENTATION(bool RadarClass::RTacticalClass::Action(unsigned, KeyNumType&), 0x005B9190);
+DEFINE_IMPLEMENTATION(int RadarClass::RTacticalClass::Action(unsigned, KeyNumType&), 0x005B9190);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(PowerClass::PowerClass(), 0x005AAFD0);
 PowerClass::PowerClass(const NoInitClass& x) {}
-PowerClass::~PowerClass() {}
 DEFINE_IMPLEMENTATION(void PowerClass::One_Time(), 0x005AB0D0);
 DEFINE_IMPLEMENTATION(void PowerClass::Init_Clear(), 0x005AB050);
 DEFINE_IMPLEMENTATION(void PowerClass::AI(KeyNumType&, Point2D&), 0x005AB7C0);
@@ -2131,6 +2130,13 @@ DEFINE_IMPLEMENTATION(void PowerClass::Draw_It(bool), 0x005AB460);
 DEFINE_IMPLEMENTATION(const char* PowerClass::Help_Text(int), 0x005ABD50);
 DEFINE_IMPLEMENTATION(void PowerClass::Set_Dimensions(), 0x005ABCC0);
 DEFINE_IMPLEMENTATION(void PowerClass::Init_For_House(), 0x005AB0E0);
+DEFINE_IMPLEMENTATION(void PowerClass::Flash_Power(), 0x005AB100);
+DEFINE_IMPLEMENTATION(int PowerClass::Desired_Power_Height(), 0x005AB140);
+DEFINE_IMPLEMENTATION(int PowerClass::Update_Delay(), 0x005AB1F0);
+DEFINE_IMPLEMENTATION(int PowerClass::Max_Power_Height(), 0x005AB240);
+DEFINE_IMPLEMENTATION(int PowerClass::Desired_Levels(int&, int&, int&), 0x005AB260);
+DEFINE_IMPLEMENTATION(void PowerClass::Remove_Pip(), 0x005AB6E0);
+DEFINE_IMPLEMENTATION(void PowerClass::Add_Pip(), 0x005AB750);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(SidebarClass::SidebarClass(), 0x005F2330);
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(SidebarClass::SidebarClass(const NoInitClass &), 0x005F2510);
@@ -2181,14 +2187,14 @@ DEFINE_IMPLEMENTATION(bool SidebarClass::StripClass::Abandon_Production(FactoryC
 // 005F6080
 // 005F6620
 // 005F6670
-DEFINE_IMPLEMENTATION(void Print_Cameo_Text(const char*, Point2D&, Rect&, int), 0x005F66E0);
-DEFINE_IMPLEMENTATION(bool SidebarClass::StripClass::SelectClass::Action(unsigned, KeyNumType&), 0x005F59A0);
+DEFINE_IMPLEMENTATION(void Print_Cameo_Text(const char*, const Point2D&, const Rect&, int), 0x005F66E0);
+DEFINE_IMPLEMENTATION(int SidebarClass::StripClass::SelectClass::Action(unsigned, KeyNumType&), 0x005F59A0);
 DEFINE_IMPLEMENTATION(void SidebarClass::StripClass::SelectClass::Set_Owner(StripClass&, int), 0x005F5980);
 SidebarClass::StripClass::StripClass() : StageClass() {}
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(SidebarClass::StripClass::StripClass(const InitClass &), 0x005F4180);
 SidebarClass::StripClass::StripClass(const NoInitClass& x) : StageClass(x) {}
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(SidebarClass::SBGadgetClass::SBGadgetClass(), 0x005F2310);
-DEFINE_IMPLEMENTATION(bool SidebarClass::SBGadgetClass::Action(unsigned, KeyNumType&), 0x005F5EF0);
+DEFINE_IMPLEMENTATION(int SidebarClass::SBGadgetClass::Action(unsigned, KeyNumType&), 0x005F5EF0);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(TabClass::TabClass(), 0x0060E3F0);
 TabClass::TabClass(const NoInitClass& x) : SidebarClass(x) { *((unsigned long*)this) = (unsigned long)0x006D46B0; }
@@ -2355,10 +2361,10 @@ DEFINE_IMPLEMENTATION(bool SuperClass::Recharge(bool), 0x0060B860);
 DEFINE_IMPLEMENTATION(void SuperClass::Impatient_Click() const, 0x0060BE20);
 DEFINE_IMPLEMENTATION(int SuperClass::Anim_Stage() const, 0x0060BD10);
 DEFINE_IMPLEMENTATION(bool SuperClass::Discharged(bool, Cell&), 0x0060B8E0);
-DEFINE_IMPLEMENTATION(const char* SuperClass::Ready_String() const, 0x0060BEC0);
+DEFINE_IMPLEMENTATION(const char* SuperClass::State_String() const, 0x0060BEC0);
 DEFINE_IMPLEMENTATION(bool SuperClass::Can_Place() const, 0x0060BF40);
 DEFINE_IMPLEMENTATION(bool SuperClass::Is_Powered() const, 0x0060BEB0);
-DEFINE_IMPLEMENTATION(bool SuperClass::Needs_Redraw() const, 0x0060C730);
+DEFINE_IMPLEMENTATION(bool SuperClass::Is_Charging() const, 0x0060C730);
 DEFINE_IMPLEMENTATION(void SuperClass::Place(Cell*, bool), 0x0060BF70);
 char const* SuperClass::Name() const { return Class->Name(); }
 
@@ -4146,8 +4152,8 @@ DEFINE_IMPLEMENTATION(TechnoClass* FactoryClass::Get_Object() const, 0x004974A0)
 DEFINE_IMPLEMENTATION(int FactoryClass::Get_Special_Item() const, 0x004974B0);
 DEFINE_IMPLEMENTATION(void FactoryClass::Resume_Queue(), 0x004978D0);
 DEFINE_IMPLEMENTATION(bool FactoryClass::Remove_From_Queue(const TechnoTypeClass&), 0x00497940);
-DEFINE_IMPLEMENTATION(bool FactoryClass::Is_Queued(const TechnoTypeClass&), 0x004979D0);
-DEFINE_IMPLEMENTATION(int FactoryClass::Total_Queued(const TechnoTypeClass&), 0x00497990);
+DEFINE_IMPLEMENTATION(bool FactoryClass::Is_Queued(const TechnoTypeClass*), 0x004979D0);
+DEFINE_IMPLEMENTATION(int FactoryClass::Total(const TechnoTypeClass*), 0x00497990);
 DEFINE_IMPLEMENTATION(int FactoryClass::Cost_Per_Tick() const, 0x004974C0);
 DEFINE_IMPLEMENTATION(int FactoryClass::Build_Rate() const, 0x004972F0);
 DEFINE_IMPLEMENTATION(void FactoryClass::Recalculate_Times(HouseClass*), 0x00497A00);
@@ -5065,7 +5071,7 @@ DEFINE_IMPLEMENTATION(bool SpriteCollectionClass::Draw_Alpha(Rect&, Surface&, Su
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(ToggleClass::ToggleClass(unsigned, int, int, int, int), 0x00647000);
 ToggleClass::~ToggleClass() {}
-DEFINE_IMPLEMENTATION(bool ToggleClass::Action(unsigned, KeyNumType&), 0x00647060);
+DEFINE_IMPLEMENTATION(int ToggleClass::Action(unsigned, KeyNumType&), 0x00647060);
 DEFINE_IMPLEMENTATION(void ToggleClass::Turn_On(), 0x00647040);
 DEFINE_IMPLEMENTATION(void ToggleClass::Turn_Off(), 0x00647050);
 
@@ -5103,7 +5109,7 @@ DEFINE_IMPLEMENTATION(unsigned int ZBuffer::Get_Buffer_Offset(Point2D), 0x006A95
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(GaugeClass::GaugeClass(unsigned, int, int, int, int), 0x004AACB0);
 GaugeClass::~GaugeClass() {}
 DEFINE_IMPLEMENTATION(bool GaugeClass::Draw_Me(bool), 0x004AAE40);
-DEFINE_IMPLEMENTATION(bool GaugeClass::Action(unsigned, KeyNumType&), 0x004AAFE0);
+DEFINE_IMPLEMENTATION(int GaugeClass::Action(unsigned, KeyNumType&), 0x004AAFE0);
 DEFINE_IMPLEMENTATION(int GaugeClass::Set_Maximum(int), 0x004AAD30);
 DEFINE_IMPLEMENTATION(int GaugeClass::Set_Value(int), 0x004AAD50);
 DEFINE_IMPLEMENTATION(int GaugeClass::Get_Value() const, 0x004AB840);
@@ -5122,7 +5128,7 @@ DEFINE_IMPLEMENTATION(int TriColorGaugeClass::Set_Yellow_Limit(int), 0x004AB2C0)
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(Dial8Class::Dial8Class(int, int, int, int, int, Dir256), 0x00473F30);
 Dial8Class::~Dial8Class() {}
 DEFINE_IMPLEMENTATION(bool Dial8Class::Draw_Me(bool), 0x00474330);
-DEFINE_IMPLEMENTATION(bool Dial8Class::Action(unsigned, KeyNumType&), 0x004741E0);
+DEFINE_IMPLEMENTATION(int Dial8Class::Action(unsigned, KeyNumType&), 0x004741E0);
 DEFINE_IMPLEMENTATION(Dir256 Dial8Class::Get_Direction() const, 0x004744D0);
 DEFINE_IMPLEMENTATION(void Dial8Class::Set_Direction(Dir256), 0x004744E0);
 
@@ -5143,13 +5149,13 @@ DEFINE_IMPLEMENTATION(void ShapeButtonClass::Set_Shape(const ShapeSet*, int, int
 CheckBoxClass::CheckBoxClass(unsigned id, int x, int y) : ToggleClass(id, x, y, 7, 7) {}
 CheckBoxClass::~CheckBoxClass() {}
 DEFINE_IMPLEMENTATION(bool CheckBoxClass::Draw_Me(bool), 0x0045DA00);
-DEFINE_IMPLEMENTATION(bool CheckBoxClass::Action(unsigned, KeyNumType&), 0x0045DB20);
+DEFINE_IMPLEMENTATION(int CheckBoxClass::Action(unsigned, KeyNumType&), 0x0045DB20);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(SliderClass::SliderClass(unsigned, int, int, int, int, bool), 0x005F7AC0);
 // DEFINE_IMPLEMENTATION_DESTRUCTOR(SliderClass::~SliderClass(), 0x005F7C90);
 DEFINE_IMPLEMENTATION(void SliderClass::Peer_To_Peer(unsigned, KeyNumType&, ControlClass&), 0x005F80E0);
 DEFINE_IMPLEMENTATION(bool SliderClass::Draw_Me(bool), 0x005F8070);
-DEFINE_IMPLEMENTATION(bool SliderClass::Action(unsigned, KeyNumType&), 0x005F7EE0);
+DEFINE_IMPLEMENTATION(int SliderClass::Action(unsigned, KeyNumType&), 0x005F7EE0);
 DEFINE_IMPLEMENTATION(int SliderClass::Set_Maximum(int), 0x005F7CD0);
 DEFINE_IMPLEMENTATION(int SliderClass::Set_Value(int), 0x005F7DE0);
 DEFINE_IMPLEMENTATION(int SliderClass::Thumb_Pixels(), 0x005041A0);
@@ -5170,7 +5176,7 @@ DEFINE_IMPLEMENTATION(void ListClass::Flag_To_Redraw(), 0x00504050);
 DEFINE_IMPLEMENTATION(void ListClass::Peer_To_Peer(unsigned, KeyNumType&, ControlClass&), 0x00503B90);
 DEFINE_IMPLEMENTATION(void ListClass::Set_Position(int, int), 0x005035C0);
 DEFINE_IMPLEMENTATION(bool ListClass::Draw_Me(bool), 0x005039A0);
-DEFINE_IMPLEMENTATION(bool ListClass::Action(unsigned, KeyNumType&), 0x005038B0);
+DEFINE_IMPLEMENTATION(int ListClass::Action(unsigned, KeyNumType&), 0x005038B0);
 DEFINE_IMPLEMENTATION(int ListClass::Add_Item(const char*), 0x005036F0);
 DEFINE_IMPLEMENTATION(int ListClass::Add_Item(int), 0x00503780);
 DEFINE_IMPLEMENTATION(int ListClass::Add_Scroll_Bar(), 0x00503C60);
@@ -5203,7 +5209,7 @@ DEFINE_IMPLEMENTATION(void ColorListClass::Set_Selected_Style(SelectStyleType, C
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(CheckListClass::CheckListClass(int, int, int, int, int, TextPrintType, const void *, const void *), 0x0045DB90);
 // DEFINE_IMPLEMENTATION_DESTRUCTOR(CheckListClass::~CheckListClass(), 0x0045DBE0);
-DEFINE_IMPLEMENTATION(bool CheckListClass::Action(unsigned, KeyNumType&), 0x0045DDB0);
+DEFINE_IMPLEMENTATION(int CheckListClass::Action(unsigned, KeyNumType&), 0x0045DDB0);
 DEFINE_IMPLEMENTATION(int CheckListClass::Add_Item(int), 0x0045DFD0);
 DEFINE_IMPLEMENTATION(int CheckListClass::Add_Item(const char*), 0x0045DC20);
 DEFINE_IMPLEMENTATION(const char* CheckListClass::Current_Item() const, 0x0045DC60);
@@ -5218,7 +5224,7 @@ DEFINE_IMPLEMENTATION(void CheckListClass::Draw_Entry(int, int, int, int, bool),
 // DEFINE_IMPLEMENTATION_DESTRUCTOR(EditClass::~EditClass(), 0x00490380);
 DEFINE_IMPLEMENTATION(void EditClass::Set_Focus(), 0x00490830);
 DEFINE_IMPLEMENTATION(bool EditClass::Draw_Me(bool), 0x004903E0);
-DEFINE_IMPLEMENTATION(bool EditClass::Action(unsigned, KeyNumType&), 0x00490460);
+DEFINE_IMPLEMENTATION(int EditClass::Action(unsigned, KeyNumType&), 0x00490460);
 DEFINE_IMPLEMENTATION(void EditClass::Set_Text(const char*, int), 0x004903B0);
 DEFINE_IMPLEMENTATION(const char* EditClass::Get_Text(), 0x00482BB0);
 DEFINE_IMPLEMENTATION(void EditClass::Draw_Background(), 0x00490570);
@@ -5625,7 +5631,7 @@ DSurface*& SidebarSurface = Make_Global<DSurface*>(0x0074C5D0);
 DSurface*& PrimarySurface = Make_Global<DSurface*>(0x0074C5D8);
 DSurface*& HiddenSurface = Make_Global<DSurface*>(0x0074C5DC);
 DSurface*& AlternateSurface = Make_Global<DSurface*>(0x0074C5E0);
-DSurface*& LogicSurface = Make_Global<DSurface*>(0x0074C5E4);
+DSurface*& LogicalSurface = Make_Global<DSurface*>(0x0074C5E4);
 DSurface*& CompositeSurface = Make_Global<DSurface*>(0x0074C5EC);
 Random2Class& NonCriticalRandomNumber = Make_Global<Random2Class>(0x0074BE40);
 long& Frame = Make_Global<long>(0x007E4924);
@@ -5640,7 +5646,7 @@ ConvertClass*& AnimDrawer = Make_Global<ConvertClass*>(0x00748200);
 ConvertClass*& NormalDrawer = Make_Global<ConvertClass*>(0x00748204);
 ConvertClass*& MouseDrawer = Make_Global<ConvertClass*>(0x00748208);
 ConvertClass*& SidebarDrawer = Make_Global<ConvertClass*>(0x0074820C);
-ToolTipManager*& ToolTipHandler = Make_Global<ToolTipManager*>(0x0074C638);
+ToolTipManager*& ToolTips = Make_Global<ToolTipManager*>(0x0074C638);
 VersionClass& VerNum = Make_Global<VersionClass>(0x007E4880);
 CDControlClass& CDControl = Make_Global<CDControlClass>(0x007608B8);
 WWFontClass*& Metal12FontPtr = Make_Global<WWFontClass*>(0x0074821C);
@@ -5940,6 +5946,7 @@ const ShapeSet*& ObjectTypeClass::Pip2Shapes = Make_Global<const ShapeSet*>(0x00
 const ShapeSet*& ObjectTypeClass::TalkBubbleShapes = Make_Global<const ShapeSet*>(0x00808758);
 bool& LightSourceClass::Recalc = Make_Global<bool>(0x00700398);
 const ShapeSet*& BuildingTypeClass::BuildingZShape = Make_Global<const ShapeSet*>(0x0076053C);
+const ShapeSet*& PowerClass::PowerPipShape = Make_Global<const ShapeSet*>(0x00809650);
 
 
 /**

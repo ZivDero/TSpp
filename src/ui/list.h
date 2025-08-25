@@ -48,7 +48,7 @@ public:
     virtual void Peer_To_Peer(unsigned flags, KeyNumType& key, ControlClass& whom) override;
     virtual void Set_Position(int x, int y) override;
     virtual bool Draw_Me(bool forced = false) override;
-    virtual bool Action(unsigned flags, KeyNumType& key) override;
+    virtual int Action(unsigned flags, KeyNumType& key) override;
 
     virtual int Add_Item(const char* text);
     virtual int Add_Item(int text);

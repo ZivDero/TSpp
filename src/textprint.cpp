@@ -39,15 +39,12 @@
  *
  *  @authors: CCHyper, tomsons26
  */
-Point2D Simple_Text_Print(const char* text, XSurface* surface, Rect* rect, Point2D* xy, ConvertClass* drawer, unsigned fore, unsigned back, TextPrintType flag, int a8)
+Point2D Simple_Text_Print(const char* text, Surface& surface, Rect& rect, Point2D& xy, ConvertClass* drawer, unsigned fore, unsigned back, TextPrintType flag, int a8)
 {
-    TSPP_ASSERT(surface != nullptr);
-    TSPP_ASSERT(rect != nullptr);
-    TSPP_ASSERT(xy != nullptr);
     TSPP_ASSERT(a8 < 16);
 
     if (!text || *text == '\0') {
-        return *xy;
+        return xy;
     }
 
     Rect fillrect;
@@ -55,8 +52,8 @@ Point2D Simple_Text_Print(const char* text, XSurface* surface, Rect* rect, Point
     WWFontClass* font = nullptr;   // Font to use.
     unsigned char fontpalette[16]; // Working font palette array.
 
-    int xpos = xy->X;
-    int ypos = xy->Y;
+    int xpos = xy.X;
+    int ypos = xy.Y;
 
     /**
      *  Get the desired font.
@@ -187,14 +184,14 @@ Point2D Simple_Text_Print(const char* text, XSurface* surface, Rect* rect, Point
      *  Draw a solid black background behind the text.
      */
     case TPF_SOLIDBLACK_BG:
-        surface->Fill_Rect(fillrect, DSurface::RGB_To_Pixel(0, 0, 0)); // Black
+        surface.Fill_Rect(fillrect, DSurface::RGB_To_Pixel(0, 0, 0)); // Black
         break;
 
     /**
      *  Draw a semi transparent black background behind the text.
      */
     case TPF_TRANSBLACK_BG: {
-        surface->Fill_Rect_Trans(fillrect, RGBClass(0, 0, 0), 60); // Black, 60%
+        surface.Fill_Rect_Trans(fillrect, RGBClass(0, 0, 0), 60); // Black, 60%
         break;
     }
 
@@ -212,7 +209,7 @@ Point2D Simple_Text_Print(const char* text, XSurface* surface, Rect* rect, Point
     /**
      *  Draw the text to the surface.
      */
-    pt = font->Print(text, surface, rect, &text_xy, drawer, fontpalette);
+    pt = font->Print(text, &surface, &rect, &text_xy, drawer, fontpalette);
 
     return pt;
 }

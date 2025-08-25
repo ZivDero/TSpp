@@ -31,6 +31,7 @@
 #include "tspp_assert.h"
 #include <memory>
 #include <new>
+#include <utility>
 
 
 class NoInitClass;
@@ -276,6 +277,8 @@ public:
 
     bool Add(const T& object);
     bool Add_Head(const T& object);
+    template<typename... Args>
+    bool Emplace(Args&&... args);
 
     T* Uninitialized_Add();
     bool Delete(const T& object);
@@ -433,6 +436,27 @@ bool DynamicVectorClass<T>::Add_Head(const T& object)
     (*this)[0] = object;
     ++ActiveCount;
     //	(*this)[ActiveCount++] = object;
+
+    return true;
+}
+
+
+template<typename T>
+template<typename... Args>
+bool DynamicVectorClass<T>::Emplace(Args&&... args)
+{
+    if (ActiveCount >= VectorMax) {
+        if ((IsAllocated || !VectorMax) && GrowthStep > 0) {
+            if (!Resize(VectorMax + GrowthStep)) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    new (&(*this)[ActiveCount]) T(std::forward<Args>(args)...);
+    ++ActiveCount;
 
     return true;
 }

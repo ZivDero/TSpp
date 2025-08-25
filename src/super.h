@@ -82,14 +82,14 @@ public:
     void Impatient_Click() const;
     int Anim_Stage() const;
     bool Discharged(bool player, Cell& cell = Cell());
-    const char* Ready_String() const;
+    const char* State_String() const;
     bool Can_Place() const;
     void Set_Readiness(bool ready) { IsReady = ready; }
     bool Is_Ready() const { return IsReady; }
     bool Is_Present() const { return IsPresent; }
     bool Is_One_Time() const { return IsOneTime && IsPresent; }
     bool Is_Powered() const;
-    bool Needs_Redraw() const;
+    bool Is_Charging() const;
 
     void Place(Cell* cell, bool player = false);
 

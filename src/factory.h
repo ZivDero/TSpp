@@ -30,6 +30,7 @@
 #include "abstract.h"
 #include "stage.h"
 #include "vector.h"
+#include "techno.h"
 
 
 class TechnoClass;
@@ -84,18 +85,30 @@ public:
     int Get_Special_Item() const;
     void Resume_Queue(); // 004978D0
     bool Remove_From_Queue(const TechnoTypeClass& object);
-    bool Is_Queued(const TechnoTypeClass& object);
-    int Total_Queued(const TechnoTypeClass& object);
+    bool Is_Queued(const TechnoTypeClass* object);
+    int Total(const TechnoTypeClass* object);
     int Cost_Per_Tick() const;
     int Build_Rate() const;
     bool Is_Building() const { return StageClass::Fetch_Rate() != 0 && !IsSuspended; }
     HouseClass* Get_House() { return House; }
     int Queued_Object_Count() { return QueuedObjects.Count(); }
 
-    const char* Name() const;
-
     static void Recalculate_Times(HouseClass* house);
-    static FactoryClass* Find_By_Owner_And_Product(const HouseClass* house, const TechnoTypeClass* item);
+
+    bool Has_Production_Target() const
+    {
+        if (Object != nullptr) return true;
+        if (QueuedObjects.Count() > 0) return true;
+        return false;
+    }
+
+    bool Is_Currently_Producing(const TechnoTypeClass* type) const
+    {
+        if (Object == nullptr) return false;
+        if (Object->TClass == nullptr) return true;
+        if (Object->TClass == type) return true;
+        return false;
+    }
 
 public:
     DynamicVectorClass<const TechnoTypeClass*> QueuedObjects;

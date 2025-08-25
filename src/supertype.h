@@ -88,7 +88,7 @@ public:
     VoxType VoxSuspend;
     int RechargeTime;
     SuperWeaponType Type;
-    ShapeSet* SidebarIcon;
+    ShapeSet* CameoData;
     ActionType Action;
     BuildingTypeClass* AuxBuilding;
     char SidebarImage[25];

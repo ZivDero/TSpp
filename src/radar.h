@@ -241,7 +241,7 @@ public:
     {
     public:
         RTacticalClass();
-        virtual bool Action(unsigned flags, KeyNumType& key) override;
+        virtual int Action(unsigned flags, KeyNumType& key) override;
 
         friend class RadarClass;
     };

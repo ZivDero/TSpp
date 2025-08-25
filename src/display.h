@@ -132,7 +132,7 @@ public:
     bool IsSellMode;
     bool IsPowerMode;
     bool IsWaypointMode;
-    SuperWeaponType TargettingType;
+    SuperWeaponType IsTargettingMode;
     Coord* field_11C4;    // waypoint related
     Coord field_11C8;     // current waypoint coord (as user is moving mouse around).
     RGBStruct field_11D4; // waypoint related, waypoint scrolling color?
@@ -149,7 +149,7 @@ public:
         TacticalClass();
 
     protected:
-        virtual bool Action(unsigned flags, KeyNumType& key) override;
+        virtual int Action(unsigned flags, KeyNumType& key) override;
     };
 
     friend class TacticalClass;

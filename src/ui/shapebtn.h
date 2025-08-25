@@ -45,13 +45,13 @@ public:
 
     virtual void Set_Shape(const ShapeSet* data, int width = 0, int height = 0);
 
-    const ShapeSet* Get_Shape_Data() { return ShapeData; }
+    void Set_Flags(unsigned flags) { Flags = flags; }
 
 public:
     bool ReflectButtonState;
-    int DrawX;
-    int DrawY;
-    bool DrawnOnSidebarSurface;
+    int DrawOffsetX;
+    int DrawOffsetY;
+    bool DrawOnSidebar;
     ConvertClass* ShapeDrawer;
     bool IsDrawn;
     bool DrawAlpha;

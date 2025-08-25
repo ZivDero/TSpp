@@ -36,7 +36,6 @@ class PowerClass : public RadarClass
 public:
     PowerClass();
     PowerClass(const NoInitClass& x);
-    ~PowerClass();
 
     /**
      *  GScreenClass
@@ -57,13 +56,13 @@ public:
      */
     virtual void Init_For_House() override;
 
-    // 005AB100
-    // 005AB140
-    // 005AB1F0
-    // 005AB240
-    // 005AB260
-    // 005AB6E0
-    // 005AB750
+    void Flash_Power();
+    int Desired_Power_Height();
+    int Update_Delay();
+    int Max_Power_Height();
+    int Desired_Levels(int& green, int& yellow, int& red);
+    void Remove_Pip();
+    void Add_Pip();
 
     void Redraw_Power()
     {
@@ -71,15 +70,30 @@ public:
         Flag_To_Redraw(false);
     }
 
+    enum PowerEnums {
+        GADGET_POWER = 999,
+        POWER_X = 8,
+        POWER_Y = 25,
+        POWER_WIDTH = 12,
+        POWER_PIP_HEIGHT = 4,
+        POWER_PIP_EMPTY = 0,
+        POWER_PIP_GREEN = 1,
+        POWER_PIP_YELLOW = 2,
+        POWER_PIP_RED = 3,
+        POWER_PIP_WHITE = 4,
+    };
+
 public:
     bool IsToRedraw;
     CDTimerClass<SystemTimerClass> FlashTimer;
-    int field_1504;
-    CDTimerClass<SystemTimerClass> field_1508;
-    int field_1514;
-    int field_1518;
-    int field_151C;
-    bool field_1520;
+    int FlashCount;
+    CDTimerClass<SystemTimerClass> UpdateTimer;
+    int GreenPipCount;
+    int YellowPipCount;
+    int RedPipCount;
+    bool HasChanged;
     int RecordedPower;
     int RecordedDrain;
+
+    static ShapeSet const*& PowerPipShape;
 };
