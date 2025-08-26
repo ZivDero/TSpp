@@ -157,4 +157,7 @@ public:
 public:
     static TacticalClass& TacButton;
     static ARRAY_MEMBER_DEC(LayerClass, Layer, LAYER_COUNT);
+
+    static ShapeSet const*& DisplayClass::ShadowShapes;
+    static ShapeSet const*& DisplayClass::PlacementShapes;
 };

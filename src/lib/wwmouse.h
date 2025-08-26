@@ -56,9 +56,9 @@ public:
     virtual int Get_Mouse_State() const;
     virtual int Get_Mouse_X() const;
     virtual int Get_Mouse_Y() const;
-    virtual Point2D Get_Mouse_XY() const;
-    virtual void Draw_1(XSurface* surface, bool forced = false);
-    virtual void Draw_2(XSurface* surface, bool forced = false);
+    virtual Point2D Get_Mouse_Point() const;
+    virtual void Draw_Mouse(XSurface* surface, bool forced = false);
+    virtual void Erase_Mouse(XSurface* surface, bool forced = false);
     virtual void Confine_Pos(int& x, int& y) const;
 
     void Set_Mouse_XY(int x, int y)

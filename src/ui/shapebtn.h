@@ -45,8 +45,6 @@ public:
 
     virtual void Set_Shape(const ShapeSet* data, int width = 0, int height = 0);
 
-    void Set_Flags(unsigned flags) { Flags = flags; }
-
 public:
     bool ReflectButtonState;
     int DrawOffsetX;

@@ -73,4 +73,6 @@ public:
     CDTimerClass<FrameTimerClass> FlasherTimer;
     bool IsToRedraw;
     CDTimerClass<FrameTimerClass> MoneyFlashTimer;
+
+    static ShapeSet const*& TabClass::TabShape;
 };

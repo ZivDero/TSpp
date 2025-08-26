@@ -93,8 +93,8 @@ public:
     void Draw_Names();
     // 005B99D0
     void Compute_Radar_Image();
-    // 005B9D10
-    // 005BA3E0
+    Rect Compute_Background(Rect const& cell_rect, Rect& update_rect, bool fill_in);
+    void Fill_In_Background(Rect const& cell_rect, Rect const& update_rect);
     // 005BA590
     // 005BA600
     // 005BA690
@@ -127,7 +127,7 @@ public:
     // 005BCC40
     void Total_Radar_Refresh();
 
-    void Clear_Background_Update_Stack() { PixelStack.Clear(); }
+    void Clear_Background_Update_Stack() { BackgroundUpdateStack.Clear(); }
 
 public:
 
@@ -145,28 +145,29 @@ public:
     int RadPWidth;
     int RadPHeight;
 
-    Rect field_1214;
-    DSurface* field_1224;
-    BSurface* field_1228;
+    Rect LastDrawRect;
+    DSurface* RadarSurface;
+    BSurface* RadarDrawingSurface;
 
-    /**
-     *  This is the list of radar pixels that need to be updated. Only a partial
-     *  list is maintained for maximum speed.
-     */
-    DynamicVectorClass<Cell> PixelStack;
-    RGBClass* PixelColors;
+    DynamicVectorClass<Cell> BackgroundUpdateStack;
+    RGBClass* BackgroundColors;
 
     /**
      *  The width and height is controlled by the actual dimensions
      *  of the radar map display box (in pixels).
      */
-    unsigned RadarCellWidth;
-    unsigned RadarCellHeight;
+    int RadarCellWidth;
+    int RadarCellHeight;
+    Rect CellRedrawRect;
 
-    Rect field_1250;
     void* field_1260; // hash table
-    DynamicVectorClass<Point2D> field_1264;
-    int field_127C;
+
+    /**
+     *  This is the list of radar pixels that need to be updated. Only a partial
+     *  list is maintained for maximum speed.
+     */
+    DynamicVectorClass<Point2D> PixelStack;
+    unsigned char* PixelFlags;
 
     DynamicVectorClass<Point2D> Foundation[BSIZE_COUNT];
 
@@ -230,8 +231,8 @@ public:
     bool IsToRedraw;
     bool FullRedraw;
 
-    Rect field_14C4;
-    Rect field_14D4;
+    Rect RadarViewRect;
+    Rect OldRadarViewRect;
 
     int RadarAnimFrame;
     CDTimerClass<SystemTimerClass> RadarAnimTimer;

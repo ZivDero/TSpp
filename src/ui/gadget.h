@@ -97,6 +97,7 @@ public:
     virtual bool Clicked_On(KeyNumType& key, unsigned flags, int mouse_x, int mouse_y);
 
     bool Is_Enabled() const { return !IsDisabled; }
+    void Set_Flags(unsigned flags) { Flags = flags; }
 
     GadgetClass* Extract_Gadget_At_Mouse(int mouse_x, int mouse_y)
     {
