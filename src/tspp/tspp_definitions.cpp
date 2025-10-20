@@ -596,10 +596,10 @@ DEFINE_IMPLEMENTATION(long CRCPipe::Result() const, 0x00471110);
 DEFINE_IMPLEMENTATION(bool XSurface::Blit_From(Rect const&, Rect const&, Surface const&, Rect const&, Rect const&, bool, bool), 0x006A82B0);
 DEFINE_IMPLEMENTATION(bool XSurface::Blit_From(Rect const&, Surface const&, Rect const&, bool, bool), 0x006A8150);
 DEFINE_IMPLEMENTATION(bool XSurface::Blit_From(Surface const&, bool, bool), 0x006A80B0);
-DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect(Rect const&, unsigned), 0x006A75E0);
-DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect(Rect const&, Rect const&, unsigned), 0x006A7610);
+DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect(Rect const&, int), 0x006A75E0);
+DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect(Rect const&, Rect const&, int), 0x006A7610);
 DEFINE_IMPLEMENTATION(bool XSurface::Fill(int), 0x006A8070);
-DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect_Trans(Rect const&, const RGBClass&, unsigned), 0x006A7900);
+DEFINE_IMPLEMENTATION(bool XSurface::Fill_Rect_Trans(Rect const&, const RGBClass&, int), 0x006A7900);
 DEFINE_IMPLEMENTATION(bool XSurface::Draw_Ellipse(Point2D, int, int, Rect, int), 0x006A7910);
 DEFINE_IMPLEMENTATION(bool XSurface::Put_Pixel(Point2D const&, int), 0x006A7470);
 DEFINE_IMPLEMENTATION(int XSurface::Get_Pixel(Point2D const&), 0x006A7420);
@@ -614,8 +614,8 @@ DEFINE_IMPLEMENTATION(int XSurface::entry_48(Point2D const&, Point2D const&, int
 DEFINE_IMPLEMENTATION(bool XSurface::entry_4C(Point2D const&, Point2D const&, int, bool), 0x006A7110);
 DEFINE_IMPLEMENTATION(bool XSurface::Draw_Rect(Rect const&, int), 0x006A7350);
 DEFINE_IMPLEMENTATION(bool XSurface::Draw_Rect(Rect const&, Rect const&, int), 0x006A7380);
-DEFINE_IMPLEMENTATION(void* XSurface::Lock(Point2D), 0x00406DC0);
-DEFINE_IMPLEMENTATION(bool XSurface::Unlock(), 0x00406DD0);
+DEFINE_IMPLEMENTATION(void* XSurface::Lock(Point2D) const, 0x00406DC0);
+DEFINE_IMPLEMENTATION(bool XSurface::Unlock() const, 0x00406DD0);
 DEFINE_IMPLEMENTATION(bool XSurface::Is_Locked() const, 0x00406DE0);
 DEFINE_IMPLEMENTATION(bool XSurface::Is_Direct_Draw() const, 0x00406DF0);
 DEFINE_IMPLEMENTATION(bool XSurface::entry_84(Point2D const&, int, Rect const&), 0x006A7550);
@@ -623,7 +623,7 @@ DEFINE_IMPLEMENTATION(int XSurface::entry_88(Point2D const&, Rect const&) const,
 DEFINE_IMPLEMENTATION(void XSurface::Fill_Circle(Point2D, unsigned, Rect, int), 0x006A7EE0);
 
 BSurface::BSurface(int width, int height, int bbp, void* buffer) : XSurface(width, height), BBP(bbp), Buff(buffer, height * width * bbp) { *((unsigned long*)this) = (unsigned long)0x006CAB74; }
-DEFINE_IMPLEMENTATION(void* BSurface::Lock(Point2D), 0x00406E50);
+DEFINE_IMPLEMENTATION(void* BSurface::Lock(Point2D) const, 0x00406E50);
 DEFINE_IMPLEMENTATION(int BSurface::Bytes_Per_Pixel() const, 0x00406E90);
 DEFINE_IMPLEMENTATION(int BSurface::Stride() const, 0x00406EA0);
 
@@ -634,16 +634,16 @@ DEFINE_IMPLEMENTATION(int BSurface::Stride() const, 0x00406EA0);
 DEFINE_IMPLEMENTATION(bool DSurface::Blit_From(Rect const&, Rect const&, Surface const&, Rect const&, Rect const&, bool, bool), 0x0048B5E0);
 DEFINE_IMPLEMENTATION(bool DSurface::Blit_From(Rect const&, Surface const&, Rect const&, bool, bool), 0x0048B590);
 DEFINE_IMPLEMENTATION(bool DSurface::Blit_From(Surface const&, bool, bool), 0x004901A0);
-DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect(Rect const&, unsigned), 0x0048BB00);
-DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect(Rect const&, Rect const&, unsigned), 0x0048BB30);
-DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect_Trans(Rect const&, RGBClass const&, unsigned), 0x0048BCE0);
+DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect(Rect const&, int), 0x0048BB00);
+DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect(Rect const&, Rect const&, int), 0x0048BB30);
+DEFINE_IMPLEMENTATION(bool DSurface::Fill_Rect_Trans(Rect const&, RGBClass const&, int), 0x0048BCE0);
 DEFINE_IMPLEMENTATION(bool DSurface::Draw_Line_entry_34(Rect const&, Point2D const&, Point2D const&, int, int, int, bool), 0x0048EA90);
 DEFINE_IMPLEMENTATION(bool DSurface::Draw_Line_entry_38(Rect const&, Point2D const&, Point2D const&, int, int, int, bool), 0x0048C150);
 DEFINE_IMPLEMENTATION(bool DSurface::Draw_Line_entry_3C(Rect const&, Point2D const&, Point2D const&, RGBClass const&, int, int, bool, bool, bool, bool, float), 0x0048CC00);
 DEFINE_IMPLEMENTATION(int DSurface::entry_48(Point2D const&, Point2D const&, int, bool[], int, bool), 0x0048F4B0);
 DEFINE_IMPLEMENTATION(bool DSurface::entry_4C(Point2D const&, Point2D const&, int, bool), 0x0048FB90);
-DEFINE_IMPLEMENTATION(void* DSurface::Lock(Point2D), 0x0048B370);
-DEFINE_IMPLEMENTATION(bool DSurface::Unlock(), 0x0048B4D0);
+DEFINE_IMPLEMENTATION(void* DSurface::Lock(Point2D) const, 0x0048B370);
+DEFINE_IMPLEMENTATION(bool DSurface::Unlock() const, 0x0048B4D0);
 DEFINE_IMPLEMENTATION(bool DSurface::Can_Lock(int, int) const, 0x0048B450);
 DEFINE_IMPLEMENTATION(int DSurface::Bytes_Per_Pixel() const, 0x0048B350);
 DEFINE_IMPLEMENTATION(int DSurface::Stride() const, 0x0048B360);
@@ -5639,7 +5639,7 @@ DEFINE_IMPLEMENTATION(void Shake_The_Screen(int), 0x004633B0);
 DEFINE_IMPLEMENTATION(long Owner_From_Name(const char*), 0x00463390);
 DEFINE_IMPLEMENTATION(bool Main_Loop(), 0x00508A40);
 DEFINE_IMPLEMENTATION(void Keyboard_Process(KeyNumType&), 0x005093B0);
-DEFINE_IMPLEMENTATION(void Load_Title_Screen(const char*, XSurface*, PaletteClass*), 0x00686340);
+DEFINE_IMPLEMENTATION(void Load_Title_Screen(const char*, Surface*, PaletteClass*), 0x00686340);
 DEFINE_IMPLEMENTATION(ThemeType Get_Intro_Theme(), 0x004E86F0);
 DEFINE_IMPLEMENTATION(ThemeType Get_Maps_Theme(), 0x004E8730);
 DEFINE_IMPLEMENTATION(void Init_Random(), 0x004E38A0);
@@ -5749,7 +5749,7 @@ unsigned& ExceptionReturnBase = Make_Global<unsigned>(0x007B304C);
 unsigned& ExceptionReturnStack = Make_Global<unsigned>(0x007B3044);
 unsigned& ExceptionReturnAddress = Make_Global<unsigned>(0x007B3048);
 bool& CatchExceptions = Make_Global<bool>(0x007E4E94);
-bool& Debug_Windowed = Make_Global<bool>(0x007A1790);
+bool& WindowedMode = Make_Global<bool>(0x007A1790);
 bool& Debug_ScenarioFilenameSet = Make_Global<bool>(0x007E48FD);
 char* Debug_ScenarioFilename = Make_Pointer<char>(0x007E2360);
 bool& Debug_MotionCapture = Make_Global<bool>(0x007E4901);
@@ -5865,7 +5865,7 @@ int& PrimaryColorMode = Make_Global<int>(0x006F9808);
 bool& OverlappedVideoBlits = Make_Global<bool>(0x006F980D);
 int& VideoWidth = Make_Global<int>(0x007A1EC0);
 int& VideoHeight = Make_Global<int>(0x007A1EC4);
-int& BitsPerPixel = Make_Global<int>(0x007A1EC8);
+int& VideoBitsPerPixel = Make_Global<int>(0x007A1EC8);
 
 
 /**

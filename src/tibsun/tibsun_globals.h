@@ -240,7 +240,7 @@ extern unsigned& ExceptionReturnBase;
 extern unsigned& ExceptionReturnStack;
 extern unsigned& ExceptionReturnAddress;
 extern bool& CatchExceptions;
-extern bool& Debug_Windowed;
+extern bool& WindowedMode;
 extern bool& Debug_ScenarioFilenameSet;
 extern char* Debug_ScenarioFilename; // [128]
 extern bool& Debug_MotionCapture;
@@ -347,7 +347,7 @@ extern int& PrimaryColorMode;
 extern bool& OverlappedVideoBlits;
 extern int& VideoWidth;
 extern int& VideoHeight;
-extern int& BitsPerPixel;
+extern int& VideoBitsPerPixel;
 
 extern bool& _Select_Game_fade;
 

@@ -33,7 +33,7 @@
 
 
 class FileClass;
-class XSurface;
+class Surface;
 class PaletteClass;
 class ObjectClass;
 class AbstractClass;
@@ -69,7 +69,7 @@ void Shake_The_Screen(int shakes);
 long Owner_From_Name(const char* name);
 bool Main_Loop();
 void Keyboard_Process(KeyNumType& input);
-void Load_Title_Screen(const char* name, XSurface* video_page, PaletteClass* palette);
+void Load_Title_Screen(const char* name, Surface* video_page, PaletteClass* palette);
 ThemeType Get_Intro_Theme();
 ThemeType Get_Maps_Theme();
 void Init_Random();
