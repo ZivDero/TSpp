@@ -61,3 +61,5 @@ public:
     bool field_44;
     bool field_45;
 };
+
+extern VQHandle*& CurrentVQ;

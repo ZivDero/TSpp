@@ -6162,6 +6162,8 @@ MonoClass*& ScrollingScreen = Make_Global<MonoClass*>(0x0074A130);
 
 CDTimerClass<FrameTimerClass>& ActionLineTimer = Make_Global<CDTimerClass<FrameTimerClass>>(0x0080EAE8);
 
+VQHandle*& CurrentVQ = Make_Global<VQHandle*>(0x00806E1C);
+
 
 /**
  *  Various global definitions, constants and strings.
