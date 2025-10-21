@@ -5872,12 +5872,12 @@ int& VideoBitsPerPixel = Make_Global<int>(0x007A1EC8);
 /**
  *  Class/namespaced static definitions.
  */
-unsigned& DSurface::RedLeft = Make_Global<unsigned>(0x007A2C88);
-unsigned& DSurface::RedRight = Make_Global<unsigned>(0x007A2C8C);
-unsigned& DSurface::GreenLeft = Make_Global<unsigned>(0x007A2C98);
-unsigned& DSurface::GreenRight = Make_Global<unsigned>(0x007A2C9C);
-unsigned& DSurface::BlueLeft = Make_Global<unsigned>(0x007A2C90);
-unsigned& DSurface::BlueRight = Make_Global<unsigned>(0x007A2C94);
+unsigned& DSurface::RedRight = Make_Global<unsigned>(0x007A2C88);
+unsigned& DSurface::RedLeft = Make_Global<unsigned>(0x007A2C8C);
+unsigned& DSurface::GreenRight = Make_Global<unsigned>(0x007A2C98);
+unsigned& DSurface::GreenLeft = Make_Global<unsigned>(0x007A2C9C);
+unsigned& DSurface::BlueRight = Make_Global<unsigned>(0x007A2C90);
+unsigned& DSurface::BlueLeft = Make_Global<unsigned>(0x007A2C94);
 unsigned short& DSurface::HalfbrightMask = Make_Global<unsigned short>(0x007A2CA0);
 unsigned short& DSurface::QuarterbrightMask = Make_Global<unsigned short>(0x007A2CA2);
 unsigned short& DSurface::EighthbrightMask = Make_Global<unsigned short>(0x007A2CA4);

@@ -71,14 +71,14 @@ public:
 
     static DSurface* Create_Primary(DSurface** backsurface1 = nullptr);
 
-    static unsigned Build_Hicolor_Pixel(unsigned r, unsigned g, unsigned b) { return (unsigned((b >> BlueRight) << BlueLeft) | unsigned((r >> RedRight) << RedLeft) | unsigned((g >> GreenRight) << GreenLeft)); }
-    static unsigned Build_Hicolor_Pixel(RGBClass& rgb) { return (unsigned((rgb.Blue >> BlueRight) << BlueLeft) | unsigned((rgb.Red >> RedRight) << RedLeft) | unsigned((rgb.Green >> GreenRight) << GreenLeft)); }
+    static unsigned Build_Hicolor_Pixel(unsigned r, unsigned g, unsigned b) { return b >> BlueLeft << BlueRight | r >> RedLeft << RedRight | g >> GreenLeft << GreenRight; }
+    static unsigned Build_Hicolor_Pixel(RGBClass& rgb) { return Build_Hicolor_Pixel(rgb.Get_Red(), rgb.Get_Green(), rgb.Get_Blue()); }
 
     static void Build_Locolor_Pixel(unsigned pixel, unsigned* red, unsigned* green, unsigned* blue)
     {
-        *red = (unsigned char)(pixel >> RedLeft << RedRight);
-        *green = (unsigned char)(pixel >> GreenLeft << GreenRight);
-        *blue = (unsigned char)(pixel >> BlueLeft << BlueRight);
+        *red = static_cast<unsigned char>(pixel >> RedRight << RedLeft);
+        *green = static_cast<unsigned char>(pixel >> GreenRight << GreenLeft);
+        *blue = static_cast<unsigned char>(pixel >> BlueRight << BlueLeft);
     }
 
     static unsigned Get_Red_Left() { return RedLeft; }
