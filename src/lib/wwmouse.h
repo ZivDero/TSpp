@@ -111,7 +111,7 @@ public:
     */
     void Calc_Confining_Rect();
 
-private:
+protected:
     /*
     **  This specifies the mouse shape data. It records the shape set
     **  data as well as the particular image contained within.
