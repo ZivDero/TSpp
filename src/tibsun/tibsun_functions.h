@@ -109,3 +109,5 @@ void List_Copy(Cell const* source, int len, Cell* dest);
 
 TechnoClass* As_TechnoClass(AbstractClass* target);
 TechnoClass* As_Techno(AbstractClass* target);
+
+bool On_WM_MOVING(HWND window, WPARAM wparam, LPARAM lparam);

@@ -1134,9 +1134,9 @@ DEFINE_IMPLEMENTATION(int RLEClass::Uncompress(void*, void*), 0x005C3540);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(CDControlClass::CDControlClass(), 0x0044ED90);
 // DEFINE_IMPLEMENTATION_DESTRUCTOR(CDControlClass::~CDControlClass(), 0x0044EDB0);
-DEFINE_IMPLEMENTATION(bool CDControlClass::Eject_CD_Drive(UINT), 0x0044EDC0);
-DEFINE_IMPLEMENTATION(bool CDControlClass::Lock_CD_Drive(UINT), 0x0044EF80);
-DEFINE_IMPLEMENTATION(bool CDControlClass::Unlock_CD_Drive(UINT), 0x0044F150);
+DEFINE_IMPLEMENTATION(bool CDControlClass::Force_CD_Eject(UINT), 0x0044EDC0);
+DEFINE_IMPLEMENTATION(bool CDControlClass::Lock_CD_Tray(UINT), 0x0044EF80);
+DEFINE_IMPLEMENTATION(bool CDControlClass::Unlock_CD_Tray(UINT), 0x0044F150);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(WWFontClass::WWFontClass(const void *, bool, int), 0x006A43D0);
 WWFontClass::~WWFontClass() {}
@@ -1890,7 +1890,7 @@ DEFINE_IMPLEMENTATION(void GScreenClass::Flag_To_Redraw(int), 0x004B9440);
 DEFINE_IMPLEMENTATION(void GScreenClass::Render(), 0x004B95A0);
 DEFINE_IMPLEMENTATION(void GScreenClass::Draw_It(bool), 0x0047C180);
 DEFINE_IMPLEMENTATION(void GScreenClass::Blit_Display(), 0x004B96B0);
-DEFINE_IMPLEMENTATION(void GScreenClass::Blit(bool, Surface*, int), 0x004B96C0);
+DEFINE_IMPLEMENTATION(void Update_Visible_Surface(bool, Surface*, Rect*), 0x004B96C0);
 
 CrateClass::CrateClass() : Timer(), Location(-1, -1) {}
 CrateClass::~CrateClass() {}
@@ -2298,6 +2298,7 @@ DEFINE_IMPLEMENTATION(bool ScrollClass::entry_64() const, 0x005E92C0);
 DEFINE_IMPLEMENTATION(void ScrollClass::Abort_Drag_Select(), 0x005E9A30);
 DEFINE_IMPLEMENTATION(void ScrollClass::Mouse_Right_Press(Point2D&), 0x005E99F0);
 DEFINE_IMPLEMENTATION(void ScrollClass::Mouse_Right_Up(Point2D&), 0x005E99B0);
+DEFINE_IMPLEMENTATION(void ScrollClass::Message_Handler(HWND, UINT&, UINT&, LONG&), 0x005E9300);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR(MouseClass::MouseClass(), 0x005621A0);
 MouseClass::MouseClass(const NoInitClass& x) : ScrollClass(x) { *((unsigned long*)this) = (unsigned long)0x006CA754; }
@@ -2345,6 +2346,8 @@ DEFINE_IMPLEMENTATION(void Play_Fullscreen_Movie(const char*, ThemeType), 0x0056
 DEFINE_IMPLEMENTATION(void Play_Ingame_Movie(const char*), 0x00563A30);
 DEFINE_IMPLEMENTATION(void Play_Ingame_Movie(VQType), 0x00563B00);
 DEFINE_IMPLEMENTATION(void End_Ingame_Movie(), 0x00563C40);
+DEFINE_IMPLEMENTATION(bool Movie_Is_Playing(), 0x00564600);
+DEFINE_IMPLEMENTATION(void Movie_Update_Visible_Surface(), 0x005646E0);
 
 DEFINE_IMPLEMENTATION(void Draw_Shape(Surface&, ConvertClass&, const ShapeSet*, int, const Point2D&, const Rect&, ShapeFlags_Type, const char*, int, ZGradientType, int, const ShapeSet*, int, Point2D), 0x0047C780);
 DEFINE_IMPLEMENTATION(void Blit_Block(Surface&, ConvertClass&, Surface const&, Rect const&, Point2D const&, Rect const&, unsigned char const*, Blitter const*, int, ZGradientType, int, int), 0x0047CC10);
@@ -3198,7 +3201,6 @@ DEFINE_IMPLEMENTATION(char* strtrim(char*), 0x0064AC10);
 DEFINE_IMPLEMENTATION(void WinDialogClass::Display_Dialog(HWND), 0x005A0820);
 DEFINE_IMPLEMENTATION(void WinDialogClass::End_Dialog(HWND), 0x005A0700);
 DEFINE_IMPLEMENTATION(HWND WinDialogClass::Do_Message_Box(const char*, const char*, bool*), 0x005A0C60);
-DEFINE_IMPLEMENTATION(bool WinDialogClass::Dialog_Move(HWND, WPARAM, LPARAM, UINT), 0x00685300);
 DEFINE_IMPLEMENTATION(bool WinDialogClass::Center_Window_Within(HWND, HWND), 0x00685600);
 DEFINE_IMPLEMENTATION(bool WinDialogClass::Center_Window(HWND), 0x006855E0);
 
@@ -5656,9 +5658,10 @@ DEFINE_IMPLEMENTATION(void Voxel_Calc_Normal_To_Pal_Indexes(const Vector3&, int)
 DEFINE_IMPLEMENTATION(void Voxel_Calc_Normal_To_Pal_Indexes(const Vector3&, const Vector3&, float, int), 0x0066A6E0);
 DEFINE_IMPLEMENTATION(int Voxel_Find_Best_Normal_Index(const Vector3&, int), 0x0066A870);
 DEFINE_IMPLEMENTATION(void Init_Normal_Lookup(), 0x0066A920);
-DEFINE_IMPLEMENTATION(void Set_Voxel_Light_Angle(float theta), 0x004E8AE0);
+DEFINE_IMPLEMENTATION(void Set_Voxel_Light_Angle(float), 0x004E8AE0);
 DEFINE_IMPLEMENTATION(void Init_Voxel_Matrices(), 0x00666E50);
-DEFINE_IMPLEMENTATION(void Init_Voxel_Palette(FileClass* file), 0x00665DA0);
+DEFINE_IMPLEMENTATION(void Init_Voxel_Palette(FileClass*), 0x00665DA0);
+DEFINE_IMPLEMENTATION(bool On_WM_MOVING(HWND, WPARAM, LPARAM), 0x00685300);
 
 
 DEFINE_IMPLEMENTATION(const char* Name_From_RTTI(RTTIType), 0x00403500);
@@ -5701,7 +5704,7 @@ int& BRIDGE_LEPTON_HEIGHT = Make_Global<int>(0x0074819C);
 /**
  *  Global definitions
  */
-WWKeyboardClass*& WWKeyboard = Make_Global<WWKeyboardClass*>(0x007482C0);
+WWKeyboardClass*& Keyboard = Make_Global<WWKeyboardClass*>(0x007482C0);
 OptionsClass& Options = Make_Global<OptionsClass>(0x007E4720);
 SpecialClass& Special = Make_Global<SpecialClass>(0x007E4548);
 RulesClass*& Rule = Make_Global<RulesClass*>(0x0074C488);
@@ -5726,7 +5729,7 @@ ConvertClass*& AnimDrawer = Make_Global<ConvertClass*>(0x00748200);
 ConvertClass*& NormalDrawer = Make_Global<ConvertClass*>(0x00748204);
 ConvertClass*& MouseDrawer = Make_Global<ConvertClass*>(0x00748208);
 ConvertClass*& SidebarDrawer = Make_Global<ConvertClass*>(0x0074820C);
-ToolTipManager*& ToolTipHandler = Make_Global<ToolTipManager*>(0x0074C638);
+ToolTipManager*& ToolTips = Make_Global<ToolTipManager*>(0x0074C638);
 VersionClass& VerNum = Make_Global<VersionClass>(0x007E4880);
 CDControlClass& CDControl = Make_Global<CDControlClass>(0x007608B8);
 FontClass*& Metal12FontPtr = Make_Global<FontClass*>(0x0074821C);
@@ -5867,6 +5870,10 @@ bool& OverlappedVideoBlits = Make_Global<bool>(0x006F980D);
 int& VideoWidth = Make_Global<int>(0x007A1EC0);
 int& VideoHeight = Make_Global<int>(0x007A1EC4);
 int& VideoBitsPerPixel = Make_Global<int>(0x007A1EC8);
+int& ReadyToQuit = Make_Global<int>(0x007E4978);
+bool& SurfacesRestored = Make_Global<bool>(0x007A1EBC);
+bool& _MouseCaptured = Make_Global<bool>(0x00685EE4);
+bool& _MouseWheel = Make_Global<bool>(0x0086504C);
 
 
 /**

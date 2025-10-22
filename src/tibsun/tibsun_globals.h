@@ -191,7 +191,7 @@ extern int& BRIDGE_LEPTON_HEIGHT;
 /**
  *  Global externs (should be defined in tspp_defintions.cpp).
  */
-extern WWKeyboardClass*& WWKeyboard;
+extern WWKeyboardClass*& Keyboard;
 extern OptionsClass& Options;
 extern SpecialClass& Special;
 extern RulesClass*& Rule;
@@ -216,7 +216,7 @@ extern ConvertClass*& AnimDrawer;
 extern ConvertClass*& NormalDrawer;
 extern ConvertClass*& MouseDrawer;
 extern ConvertClass*& SidebarDrawer;
-extern ToolTipManager*& ToolTipHandler;
+extern ToolTipManager*& ToolTips;
 extern VersionClass& VerNum;
 extern CDControlClass& CDControl;
 extern FontClass*& Metal12FontPtr;
@@ -348,6 +348,10 @@ extern bool& OverlappedVideoBlits;
 extern int& VideoWidth;
 extern int& VideoHeight;
 extern int& VideoBitsPerPixel;
+extern int& ReadyToQuit;
+extern bool& SurfacesRestored;
+extern bool& _MouseCaptured;
+extern bool& _MouseWheel;
 
 extern bool& _Select_Game_fade;
 
