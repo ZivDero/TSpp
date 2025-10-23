@@ -42,3 +42,5 @@ bool Center_Window_Within(HWND dialog, HWND window);
 extern HWND& CurrentWindowHandle;
 
 }; // namespace WinDialogClass
+
+extern int& WSDialogCount;

@@ -5903,6 +5903,7 @@ DisplayClass::TacticalClass& DisplayClass::TacButton = Make_Global<TacticalClass
 ARRAY_DEF(0x007A1FA0, LayerClass, DisplayClass::Layer, LAYER_COUNT);
 RadarClass::RTacticalClass& RadarClass::RadarButton = Make_Global<RadarClass::RTacticalClass>(0x00809EB0);
 HWND& WinDialogClass::CurrentWindowHandle = Make_Global<HWND>(0x00864E54);
+int& WSDialogCount = Make_Global<int>(0x00864E60);
 char* CDFileClass::RawPath = Make_Pointer<char>(0x0076092C);
 CDFileClass::SearchDriveType*& CDFileClass::First = Make_Global<CDFileClass::SearchDriveType*>(0x00760920);
 int& CDFileClass::CurrentCDDrive = Make_Global<int>(0x00760924);
