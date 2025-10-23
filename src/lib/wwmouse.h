@@ -229,7 +229,7 @@ protected:
     // bool Is_Blocked() const {return(Blocked != 0);}
 };
 
-extern WWMouseClass*& MouseCursor;
+extern Mouse*& MouseCursor;
 inline void Hide_Mouse() {MouseCursor->Hide_Mouse();}
 inline void Show_Mouse() {MouseCursor->Show_Mouse();}
 inline void Conditional_Hide_Mouse(Rect rect) {MouseCursor->Conditional_Hide_Mouse(rect);}
