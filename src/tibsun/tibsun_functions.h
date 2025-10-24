@@ -52,7 +52,7 @@ int Create_Main_Window(HINSTANCE hInstance, int command_show, int width, int hei
 void Prep_Direct_Draw();
 bool Set_Video_Mode(HWND hWnd, int w, int h, int bits_per_pixel);
 void Reset_Video_Mode();
-bool Allocate_Surfaces(Rect* common_rect, Rect* composite_rect, Rect* tile_rect, Rect* sidebar_rect, bool alloc_hidden_surf = false);
+bool Allocate_Surfaces(const Rect& hidden_rect, const Rect& composite_rect, const Rect& tile_rect, const Rect& sidebar_rect, bool hidden_first = false);
 void Free_Heaps();
 void Wait_Blit();
 void Set_DD_Palette(void* rpalette);

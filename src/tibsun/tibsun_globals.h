@@ -201,7 +201,7 @@ extern Surface*& SidebarSurface;
 extern Surface*& VisibleSurface;
 extern Surface*& HiddenSurface;
 extern Surface*& AlternateSurface;
-extern Surface*& LogicSurface;
+extern Surface*& LogicalSurface;
 extern Surface*& CompositeSurface;
 extern Random2Class& NonCriticalRandomNumber;
 extern long& Frame;

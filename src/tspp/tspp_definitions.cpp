@@ -1055,7 +1055,7 @@ DEFINE_IMPLEMENTATION(void ConvertClass::Create_Blitters(), 0x00464100);
 DEFINE_IMPLEMENTATION(void ConvertClass::Destroy_Blitters(), 0x00465A00);
 DEFINE_IMPLEMENTATION(Blitter* ConvertClass::Blitter_From_Flags(int), 0x00466130);
 DEFINE_IMPLEMENTATION(RLEBlitter* ConvertClass::RLEBlitter_From_Flags(int), 0x00466410);
-DEFINE_IMPLEMENTATION(void ConvertClass::Recalc_Color_Remap_Tables(int, int, int, int), 0x004666C0);
+DEFINE_IMPLEMENTATION(void ConvertClass::Reinitialize_Hicolor_Tables(int, int, int, int, int, int), 0x004666C0);
 
 // DEFINE_IMPLEMENTATION_CONSTRUCTOR_BASE(LightConvertClass::LightConvertClass(PaletteClass *, PaletteClass *, Surface *, int, int, int, bool, bool *, int), ConvertClass, 0x00502A00);
 LightConvertClass::LightConvertClass(const NoInitClass& noinit) { *((unsigned long*)this) = (unsigned long)0x006D3954; }
@@ -5627,7 +5627,7 @@ DEFINE_IMPLEMENTATION(int Create_Main_Window(HINSTANCE, int, int, int), 0x006861
 DEFINE_IMPLEMENTATION(void Prep_Direct_Draw(), 0x00472AD0);
 DEFINE_IMPLEMENTATION(bool Set_Video_Mode(HWND, int, int, int), 0x00472DF0);
 DEFINE_IMPLEMENTATION(void Reset_Video_Mode(), 0x00472FF0);
-DEFINE_IMPLEMENTATION(bool Allocate_Surfaces(Rect*, Rect*, Rect*, Rect*, bool), 0x004E7310);
+DEFINE_IMPLEMENTATION(bool Allocate_Surfaces(const Rect&, const Rect&, const Rect&, const Rect&, bool), 0x004E7310);
 DEFINE_IMPLEMENTATION(void Free_Heaps(), 0x004E7730);
 DEFINE_IMPLEMENTATION(void Wait_Blit(), 0x00473330);
 DEFINE_IMPLEMENTATION(void Set_DD_Palette(void*), 0x00473280);
@@ -5714,7 +5714,7 @@ Surface*& SidebarSurface = Make_Global<Surface*>(0x0074C5D0);
 Surface*& VisibleSurface = Make_Global<Surface*>(0x0074C5D8);
 Surface*& HiddenSurface = Make_Global<Surface*>(0x0074C5DC);
 Surface*& AlternateSurface = Make_Global<Surface*>(0x0074C5E0);
-Surface*& LogicSurface = Make_Global<Surface*>(0x0074C5E4);
+Surface*& LogicalSurface = Make_Global<Surface*>(0x0074C5E4);
 Surface*& CompositeSurface = Make_Global<Surface*>(0x0074C5EC);
 Random2Class& NonCriticalRandomNumber = Make_Global<Random2Class>(0x0074BE40);
 long& Frame = Make_Global<long>(0x007E4924);
