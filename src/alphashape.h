@@ -12,6 +12,9 @@
 #include "rect.h"
 
 
+class ShapeSet;
+
+
 class DECLSPEC_UUID("623C7584-74E7-11D2-B8F5-006008C809ED")
 AlphaShapeClass : public AbstractClass
 {
