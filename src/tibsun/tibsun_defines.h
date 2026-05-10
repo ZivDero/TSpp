@@ -2543,30 +2543,35 @@ DEFINE_ENUMERATION_OPERATORS(PassabilityType);
 
 
 /**
- *  Shape drawing flags.
+ *  Shape drawing flags. Mirrors `enum ShapeFlags_Type` in
+ *  Tiberian-Sun/code/draw.hh. Bit values come from the original game; names
+ *  marked "suggested" are inferred from the decompiled blitter selector and
+ *  aren't authoritative.
  */
 typedef enum ShapeFlags_Type {
-    SHAPE_NORMAL,                   // Standard shape
+    SHAPE_NORMAL = 0,                                       // Standard shape (transparent).
 
-    SHAPE_DARKEN = 1 << 0,
-    SHAPE_TRANS25 = 1 << 1,
-    SHAPE_TRANS50 = 1 << 2,
-    SHAPE_TRANS75 = (SHAPE_TRANS25|SHAPE_TRANS50),
-    SHAPE_REMAP = 1 << 3,
-    SHAPE_Z_REMAP = 1 << 4,
-    SHAPE_PLAIN = 1 << 5,
-    SHAPE_WRITE_ALPHA = 1 << 6,
-    SHAPE_80 = 1 << 7,
-    SHAPE_MULTI_WRITE_ALPHA = 1 << 8,
-    SHAPE_CENTER = 1 << 9,
-    SHAPE_WIN_REL = 1 << 10,
-    SHAPE_ALPHA = 1 << 11,
-    SHAPE_1000 = 1 << 12,
-    SHAPE_FLAT = 1 << 13,
-    SHAPE_Z_READ_WRITE = 1 << 14,
-    SHAPE_8000 = 1 << 15,
-    SHAPE_ZERO_ALPHA = 1 << 16,
-    SHAPE_NON_ZERO_ALPHA = 1 << 17,
+    SHAPE_DARKEN = 1 << 0,                                  // Force all pixels to darken the destination.
+    SHAPE_TRANSLUCENT25 = 1 << 1,                           // Translucent to destination (25%).
+    SHAPE_TRANSLUCENT50 = 1 << 2,                           // Translucent to destination (50%).
+    SHAPE_TRANSLUCENT75 = (SHAPE_TRANSLUCENT25|SHAPE_TRANSLUCENT50), // Translucent to destination (75%).
+    SHAPE_PREDATOR = 1 << 3,                                // Predator (cloak) effect.
+    SHAPE_REMAP = 1 << 4,                                   // Simple house-color remap.
+    SHAPE_NOTRANS = 1 << 5,                                 // Non-transparent but otherwise standard shape.
+    SHAPE_ALPHA_BLEND = 1 << 6,                             // Suggested. Selects BlitTranslucentWriteAlpha.
+    SHAPE_80 = 1 << 7,                                      // Unused/reserved.
+    SHAPE_WRITE_ALPHA_MULT = 1 << 8,                        // Suggested. Multiplied alpha-buffer write pass.
+    SHAPE_CENTER = 1 << 9,                                  // Coords are based on shape's center pt.
+    SHAPE_WIN_REL = 1 << 10,                                // Coordinates are window relative instead of absolute.
+    SHAPE_ALPHA = 1 << 11,                                  // Read alpha buffer when blending.
+    SHAPE_ZREAD = 1 << 12,                                  // Suggested. Z-test without write.
+    SHAPE_ZGRAD = 1 << 13,                                  // Per-pixel Z gradient based on screen Y.
+    SHAPE_ZREADWRITE = 1 << 14,                             // Suggested. Z-test + write (overlays/static terrain).
+    SHAPE_WRITE_ALPHA = 1 << 15,                            // Suggested. Additive alpha-buffer write pass.
+    SHAPE_ZERO_ALPHA = 1 << 16,                             // Restrict draw to zero-alpha destination pixels.
+    SHAPE_NONZERO_ALPHA = 1 << 17,                          // Restrict draw to non-zero-alpha destination pixels.
+    SHAPE_40000 = 1 << 18,                                  // Unused/reserved.
+    SHAPE_80000 = 1 << 19,                                  // Unused/reserved.
 
 } ShapeFlags_Type;
 DEFINE_ENUMERATION_OPERATORS(ShapeFlags_Type);
