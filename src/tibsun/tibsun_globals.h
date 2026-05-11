@@ -264,6 +264,14 @@ extern PaletteClass& WhitePalette;
 extern PaletteClass& OriginalPalette;
 extern PaletteClass& UnitPalette;
 extern PaletteClass& VoxelPalette;
+extern PaletteClass& IsoTilePalette;
+
+/**
+ *  256-entry boolean array. TintMask[i] == 1 means palette entry `i` gets RGB
+ *  tint applied during lighting; TintMask[i] == 0 means only intensity scales
+ *  it (shadow / glow / other special entries).
+ */
+extern bool* DefaultTintMask;
 extern PKey& FastKey;
 extern CCINIClass*& RuleINI;
 extern CCINIClass& ConfigINI;

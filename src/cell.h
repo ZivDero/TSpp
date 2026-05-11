@@ -317,10 +317,10 @@ public:
     short Ambient;
     short Brightness;
     short TileBrightness;
-    short field_86;
-    short field_88;
-    short field_8A;
-    short field_8C;
+    short AltBrightness;
+    short RedTint;
+    short GreenTint;
+    short BlueTint;
     short Tube;
     unsigned char field_90;
     unsigned char IsIceGrowthAllowed;
