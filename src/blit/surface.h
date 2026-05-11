@@ -37,13 +37,13 @@ public:
     virtual int Get_Pixel(Point2D const& point) = 0;
     virtual bool Draw_Line(Point2D const& startpoint, Point2D const& endpoint, int color) = 0;
     virtual bool Draw_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color) = 0;
-    virtual bool Draw_Line_entry_34(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color, int a5, int a6, bool a7 = false) = 0;
-    virtual bool Draw_Line_entry_38(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int a4, int a5, int a6, bool a7 = false) = 0;
-    virtual bool Draw_Line_entry_3C(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, RGBClass const& color, int a5, int a6, bool a7, bool a8, bool a9, bool a10, float a11) = 0;
+    virtual bool Draw_Z_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color, int z_start, int z_end, bool write_depth = false) = 0;
+    virtual bool Brighten_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int brightness, int z_start, int z_end, bool write_depth = false) = 0;
+    virtual bool Draw_Gradient_Z_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, RGBClass const& color, int z_start, int z_end, bool write_depth, bool gradient, bool alpha_modulate, bool unused_flag, float opacity) = 0;
     virtual bool Plot_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, void (*drawer_callback)(Point2D&)) = 0;
     virtual int Draw_Dashed_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset) = 0;
-    virtual int entry_48(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset, bool a6) = 0;
-    virtual bool entry_4C(Point2D const& startpoint, Point2D const& endpoint, int color, bool a4 = false) = 0;
+    virtual int Draw_Dashed_Alpha_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset, bool alpha_test_bg) = 0;
+    virtual bool Draw_Alpha_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool unused = false) = 0;
     virtual bool Draw_Rect(Rect const& rect, int color) = 0;
     virtual bool Draw_Rect(Rect const& cliprect, Rect const& rect, int color) = 0;
     virtual void* Lock(Point2D point = Point2D(0, 0)) const = 0;
@@ -57,7 +57,7 @@ public:
     virtual int Get_Width() const;
     virtual int Get_Height() const;
     virtual bool Is_Direct_Draw() const;
-    virtual bool entry_84(Point2D const& point, int color, Rect const& rect) = 0;
+    virtual bool Put_Pixel_Clipped(Point2D const& point, int color, Rect const& rect) = 0;
     virtual int entry_88(Point2D const& point, Rect const& rect) const = 0;
 
     bool Clear() { return Fill(TBLACK); }

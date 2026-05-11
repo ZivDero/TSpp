@@ -28,20 +28,20 @@ public:
     int Get_Pixel(Point2D const& point) override;
     bool Draw_Line(Point2D const& startpoint, Point2D const& endpoint, int color) override;
     bool Draw_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color) override;
-    bool Draw_Line_entry_34(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color, int a5, int a6, bool a7 = false) override;
-    bool Draw_Line_entry_38(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int a4, int a5, int a6, bool a7 = false) override;
-    bool Draw_Line_entry_3C(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, RGBClass const& color, int a5, int a6, bool a7, bool a8, bool a9, bool a10, float a11) override;
+    bool Draw_Z_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int color, int z_start, int z_end, bool write_depth = false) override;
+    bool Brighten_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, int brightness, int z_start, int z_end, bool write_depth = false) override;
+    bool Draw_Gradient_Z_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, RGBClass const& color, int z_start, int z_end, bool write_depth, bool gradient, bool alpha_modulate, bool unused_flag, float opacity) override;
     bool Plot_Line(Rect const& cliprect, Point2D const& startpoint, Point2D const& endpoint, void (*drawer_callback)(Point2D&)) override;
     int Draw_Dashed_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset) override;
-    int entry_48(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset, bool a6) override;
-    bool entry_4C(Point2D const& startpoint, Point2D const& endpoint, int color, bool a4 = false) override;
+    int Draw_Dashed_Alpha_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool pattern[], int offset, bool alpha_test_bg) override;
+    bool Draw_Alpha_Line(Point2D const& startpoint, Point2D const& endpoint, int color, bool unused = false) override;
     bool Draw_Rect(Rect const& rect, int color) override;
     bool Draw_Rect(Rect const& cliprect, Rect const& rect, int color) override;
     void* Lock(Point2D point = Point2D(0, 0)) const override;
     bool Unlock() const override;
     bool Is_Locked() const override;
     bool Is_Direct_Draw() const override;
-    bool entry_84(Point2D const& point, int color, Rect const& rect) override;
+    bool Put_Pixel_Clipped(Point2D const& point, int color, Rect const& rect) override;
     int entry_88(Point2D const& point, Rect const& rect) const override;
 
     void Fill_Circle(Point2D center, unsigned radius, Rect rect, int color);
