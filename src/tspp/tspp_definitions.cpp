@@ -635,7 +635,7 @@ DEFINE_IMPLEMENTATION(int Buffer_Size(Surface&, int, int), 0x00423330);
 DEFINE_IMPLEMENTATION(bool To_Buffer(Surface&, Rect const&, Buffer const&), 0x00423350);
 DEFINE_IMPLEMENTATION(bool From_Buffer(Surface&, Rect const&, Buffer const&), 0x00423410);
 DEFINE_IMPLEMENTATION(bool Bit_Blit(Surface&, Rect const&, Surface const&, Rect const&, Blitter const&, int, ZGradientType, int, int), 0x004234D0);
-DEFINE_IMPLEMENTATION(bool Bit_Blit(Surface&, Rect const&, Rect const&, Surface const&, Rect const&, Rect const&, Blitter&, int, ZGradientType, int, int), 0x00423530);
+DEFINE_IMPLEMENTATION(bool Bit_Blit(Surface&, Rect const&, Rect const&, Surface const&, Rect const&, Rect const&, Blitter const&, int, ZGradientType, int, int), 0x00423530);
 DEFINE_IMPLEMENTATION(bool RLE_Blit(Surface&, Rect const&, Surface const&, Rect const&, RLEBlitter const&, int, ZGradientType, int, int), 0x00423A50);
 DEFINE_IMPLEMENTATION(bool RLE_Blit(Surface&, Rect const&, Rect const&, Surface const&, Rect const&, Rect const&, RLEBlitter const&, int, ZGradientType, int, int, Surface*, Point2D), 0x00423AB0);
 
