@@ -4236,7 +4236,7 @@ DEFINE_IMPLEMENTATION(int SmudgeTypeClass::Fetch_Heap_ID() const, 0x005FC000);
 DEFINE_IMPLEMENTATION(bool SmudgeTypeClass::Read_INI(CCINIClass&), 0x005FB5C0);
 DEFINE_IMPLEMENTATION(bool SmudgeTypeClass::Create_And_Place(Cell&, HouseClass*) const, 0x005FB440);
 DEFINE_IMPLEMENTATION(ObjectClass* const SmudgeTypeClass::Create_One_Of(HouseClass*) const, 0x005FB4B0);
-DEFINE_IMPLEMENTATION(void SmudgeTypeClass::Draw_It(Point2D&, Rect&, int, int, Cell&) const, 0x005FB4E0);
+DEFINE_IMPLEMENTATION(void SmudgeTypeClass::Draw_It(Point2D const&, Rect const&, int, int, Cell const&) const, 0x005FB4E0);
 DEFINE_IMPLEMENTATION(bool SmudgeTypeClass::Can_Place_Here(Cell&, bool), 0x005FBE30);
 DEFINE_IMPLEMENTATION(void SmudgeTypeClass::Place(Cell&), 0x005FBF30);
 DEFINE_IMPLEMENTATION(bool SmudgeTypeClass::Create_Scorch(const Coord&, int, int, bool), 0x005FB870);

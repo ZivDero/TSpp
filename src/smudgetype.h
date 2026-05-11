@@ -54,7 +54,7 @@ public:
     /**
      *  SmudgeTypeClass
      */
-    virtual void Draw_It(Point2D& xy, Rect& a2, int index, int a4, Cell& cell) const;
+    virtual void Draw_It(Point2D const& point, Rect const& cliprect, int size, int z, Cell const& cell) const;
 
     bool Can_Place_Here(Cell& cell, bool a3);
     void Place(Cell& cell);
