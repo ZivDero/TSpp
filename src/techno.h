@@ -169,7 +169,7 @@ public:
     virtual void Draw_Text_Overlay(const Point2D& point1, const Point2D& point2, const Rect& rect) const;
     virtual void Do_Uncloak(bool silent = false);
     virtual void Do_Cloak(bool silent = false);
-    virtual int entry_344(int a1) const;
+    virtual int Apparent_Brightness(int brightness) const;
     virtual bool Is_Ready_To_Random_Animate() const;
     virtual bool Random_Animate();
     virtual void Assign_Destination(const AbstractClass* target, bool a2 = true);

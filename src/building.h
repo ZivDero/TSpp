@@ -139,7 +139,7 @@ public:
     virtual WeaponInfoStruct* const Get_Weapon(WeaponSlotType weapon = WEAPON_SLOT_PRIMARY) const override;
     virtual bool Is_Turret_Equipped() const override;
     virtual void Cloaking_AI(bool a1 = false) const override;
-    virtual int entry_344(int a1) const override;
+    virtual int Apparent_Brightness(int brightness) const override;
     virtual void Assign_Destination(const AbstractClass* target, bool a2 = true) override;
     virtual bool Enter_Idle_Mode(bool inital = false, bool a2 = false);
     virtual void entry_358() override;

@@ -22,3 +22,6 @@ bool Init_Voxel_Palette(FileClass* file);
 extern float& VoxelLightAngle;
 extern Vector3& VoxelLightSource;
 extern Vector3& VoxelShadowLightSource;
+
+class Matrix3D;
+extern Matrix3D& VoxelCameraMatrix;

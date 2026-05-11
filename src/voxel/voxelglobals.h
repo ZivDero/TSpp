@@ -19,4 +19,4 @@ extern int VPL_field_C;
 
 
 extern RGBStruct Voxel_Palette[VOXEL_PALETTE_SIZE];
-extern unsigned char Voxel_PaletteLookup[MAX_PALETTE_LOOKUP_ENTRIES][VOXEL_PALETTE_SIZE];
+extern unsigned char (&Voxel_PaletteLookup)[MAX_PALETTE_LOOKUP_ENTRIES][VOXEL_PALETTE_SIZE];

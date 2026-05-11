@@ -29,6 +29,25 @@
  */
 #define VOXEL_PALETTE_SIZE 256
 
+/**
+ *  Bounding-box corner indices into `LayerInfo::Bounds[8]`. Order is fixed
+ *  by `VoxelLibrary::Compute_Bounding_Box`: bottom (-Z) corners first in
+ *  BFR/BBR/BBL/BFL order, then top (+Z) corners in TFR/TBR/TBL/TFL order.
+ *      B/T = bottom / top   (Z)
+ *      F/B = forward / back (Y)
+ *      R/L = right / left   (X)
+ */
+enum VoxelBoundsType {
+    VOXEL_BOUNDS_BFR,   // +X +Y -Z
+    VOXEL_BOUNDS_BBR,   // +X -Y -Z
+    VOXEL_BOUNDS_BBL,   // -X -Y -Z
+    VOXEL_BOUNDS_BFL,   // -X +Y -Z
+    VOXEL_BOUNDS_TFR,   // +X +Y +Z
+    VOXEL_BOUNDS_TBR,   // +X -Y +Z
+    VOXEL_BOUNDS_TBL,   // -X -Y +Z
+    VOXEL_BOUNDS_TFL,   // -X +Y +Z
+};
+
 #define VOXEL_BOUNDS_MAX 8
 
 /**
