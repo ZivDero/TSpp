@@ -1777,14 +1777,14 @@ DEFINE_IMPLEMENTATION(Coord Tactical::func_60F740(const Point2D&) const, 0x0060F
 DEFINE_IMPLEMENTATION(void Tactical::Setup_Trigger_Scroll(const Coord&, int), 0x0060F800);
 DEFINE_IMPLEMENTATION(int Tactical::Z_Lepton_To_Pixel(LEPTON), 0x0060F3C0);
 DEFINE_IMPLEMENTATION(LEPTON Tactical::Pixel_To_Z_Lepton(int), 0x0060F450);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Objects_Near_Shroud(bool, int, int, const Rect&), 0x0060FF80);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Cells_In_Area(const Rect&, const Rect&, bool), 0x00610240);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Cell_Shadows_In_Area_1(const Rect&, const Rect&, bool), 0x006104A0);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Overlays_In_Area(const Rect&, const Rect&, bool), 0x006106F0);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Fog_In_Area(const Rect&, const Rect&, bool), 0x006108E0);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Shroud_In_Area(const Rect&, const Rect&, const Rect&, bool), 0x00610AD0);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Buildings_In_Area(const Rect&, const Rect&, bool), 0x00610D40);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Terrain_Objects_In_Area(const Rect&, const Rect&, bool), 0x00610F90);
+DEFINE_IMPLEMENTATION(void Tactical::Wipe_Depth(bool, int, int, const Rect&), 0x0060FF80);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Tiles(const Rect&, const Rect&, bool), 0x00610240);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Tile_Shadows(const Rect&, const Rect&, bool), 0x006104A0);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Overlays(const Rect&, const Rect&, bool), 0x006106F0);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Fogged_Objects(const Rect&, const Rect&, bool), 0x006108E0);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Shroud(const Rect&, const Rect&, const Rect&, bool), 0x00610AD0);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Buildings(const Rect&, const Rect&, bool), 0x00610D40);
+DEFINE_IMPLEMENTATION(void Tactical::Render_Terrain(const Rect&, const Rect&, bool), 0x00610F90);
 DEFINE_IMPLEMENTATION(void Tactical::Render(XSurface& surface, bool full_redraw, RenderPassEnum render_pass), 0x006111E0);
 DEFINE_IMPLEMENTATION(void Tactical::Set_Caption_Text(int), 0x00611C00);
 DEFINE_IMPLEMENTATION(void Tactical::Clear_Caption_Text(), 0x00611C50);
@@ -1798,7 +1798,7 @@ DEFINE_IMPLEMENTATION(Cell Tactical::Click_Cell_Calc(Point2D&) const, 0x006131C0
 DEFINE_IMPLEMENTATION(int Tactical::Cell_Shadow(Cell&, bool), 0x00614F90);
 DEFINE_IMPLEMENTATION(Point2D Tactical::func_60F0F0(Point2D), 0x0060F0F0);
 DEFINE_IMPLEMENTATION(void Tactical::Register_Dirty_Area(Rect, bool), 0x0060FBB0);
-DEFINE_IMPLEMENTATION(void Tactical::Render_Objects_On_Layers(bool), 0x006156A0);
+DEFINE_IMPLEMENTATION(void Tactical::Draw_Objects(bool), 0x006156A0);
 DEFINE_IMPLEMENTATION(void Tactical::Draw_Rubber_Band(), 0x00616560);
 DEFINE_IMPLEMENTATION(void Tactical::Draw_Waypoints(bool), 0x00616F20);
 DEFINE_IMPLEMENTATION(void Tactical::Debug_Draw_Occupiers(), 0x006173B0);
@@ -3198,7 +3198,8 @@ DEFINE_IMPLEMENTATION(bool TechnoClass::Evaluate_Cell(ThreatType, int, Cell&, in
 DEFINE_IMPLEMENTATION(Cell TechnoClass::Nearby_Location(const TechnoClass*) const, 0x00633A00);
 DEFINE_IMPLEMENTATION(bool TechnoClass::Is_Z_Fudge_Bridge() const, 0x00633F60);
 // 00634110);
-DEFINE_IMPLEMENTATION(bool TechnoClass::Is_Z_Fudge_Column() const, 0x006342C0);
+DEFINE_IMPLEMENTATION(int TechnoClass::Get_Z_Fudge_Column() const, 0x006342C0);
+DEFINE_IMPLEMENTATION(void TechnoClass::Calculate_Sinking_Offset(short, int), 0x00636280);
 DEFINE_IMPLEMENTATION(bool TechnoClass::Is_Z_Fudge_Tunnel() const, 0x00634450);
 DEFINE_IMPLEMENTATION(bool TechnoClass::Is_Z_Fudge_Cliff() const, 0x00634690);
 // 00635860);
@@ -3213,7 +3214,7 @@ DEFINE_IMPLEMENTATION(int TechnoClass::Anti_Air() const, 0x006380F0);
 DEFINE_IMPLEMENTATION(int TechnoClass::Anti_Armor() const, 0x00638170);
 DEFINE_IMPLEMENTATION(int TechnoClass::Anti_Infantry() const, 0x00638240);
 DEFINE_IMPLEMENTATION(Coord TechnoClass::func_638AF0() const, 0x00638AF0);
-// 00638C70);
+DEFINE_IMPLEMENTATION(int TechnoClass::Get_Predator_Offset() const, 0x00638C70);
 DEFINE_IMPLEMENTATION(void TechnoClass::Assign_Archive_Target(AbstractClass*), 0x00639130);
 // 006391B0);
 DEFINE_IMPLEMENTATION(float TechnoClass::Target_Threat(TechnoClass*, Coord const&) const, 0x00639810);
@@ -4014,6 +4015,7 @@ BounceClass::~BounceClass() {}
 // 004245B0
 // 00424700
 DEFINE_IMPLEMENTATION(Coord BounceClass::Get_Coord() const, 0x00004248C0);
+DEFINE_IMPLEMENTATION(Matrix3D BounceClass::Get_Matrix() const, 0x00424900);
 // 00424900
 // 00424930
 // 00424A20

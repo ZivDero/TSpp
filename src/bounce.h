@@ -8,6 +8,7 @@
  ******************************************************************************/
 #pragma once
 
+#include "matrix3d.h"
 #include "quat.h"
 #include "vector3.h"
 
@@ -26,7 +27,7 @@ public:
     // 004245B0
     // 00424700
     Coord Get_Coord() const;
-    // 00424900
+    Matrix3D Get_Matrix() const;   // 00424900
     // 00424930
     // 00424A20
 

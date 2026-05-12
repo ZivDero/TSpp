@@ -75,14 +75,14 @@ public:
     static int Z_Lepton_To_Pixel(LEPTON z);
     static LEPTON Pixel_To_Z_Lepton(int a1);
     // 0060FF70
-    void Render_Objects_Near_Shroud(bool full_redraw, int xoffset, int yoffset, const Rect& bounds);
-    void Render_Cells_In_Area(const Rect& area1, const Rect& area2, bool full_redraw);
-    void Render_Cell_Shadows_In_Area_1(const Rect& area1, const Rect& area2, bool full_redraw);
-    void Render_Overlays_In_Area(const Rect& area1, const Rect& area2, bool full_redraw);
-    void Render_Fog_In_Area(const Rect& area1, const Rect& area2, bool full_redraw);
-    void Render_Shroud_In_Area(const Rect& area1, const Rect& area2, const Rect& bounds, bool full_redraw);
-    void Render_Buildings_In_Area(const Rect& area1, const Rect& area2, bool full_redraw);
-    void Render_Terrain_Objects_In_Area(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Wipe_Depth(bool full_redraw, int xoffset, int yoffset, const Rect& bounds);
+    void Render_Tiles(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Render_Tile_Shadows(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Render_Overlays(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Render_Fogged_Objects(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Render_Shroud(const Rect& area1, const Rect& area2, const Rect& bounds, bool full_redraw);
+    void Render_Buildings(const Rect& area1, const Rect& area2, bool full_redraw);
+    void Render_Terrain(const Rect& area1, const Rect& area2, bool full_redraw);
     void Render(XSurface& surface, bool full_redraw, RenderPassEnum render_pass);
     void Set_Caption_Text(int text_id);
     void Clear_Caption_Text();
@@ -122,7 +122,7 @@ public:
     // 00615380
     // 006153D0
     // 006154E0
-    void Render_Objects_On_Layers(bool include_aircraft);
+    void Draw_Objects(bool include_aircraft);
     // 00615C50
     // 00615D80
     // 00615D90

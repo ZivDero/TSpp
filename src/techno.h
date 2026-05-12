@@ -193,15 +193,14 @@ public:
     // 00632730
     Cell Nearby_Location(const TechnoClass* techno = nullptr) const;
     bool Is_Z_Fudge_Bridge() const;
-    // 00634110
-    bool Is_Z_Fudge_Column() const;
+    int Get_Z_Fudge_Column() const;
     bool Is_Z_Fudge_Tunnel() const;
     bool Is_Z_Fudge_Cliff() const;
     // 00635860
     // 00635B00
     // 00635E20
     // 00635FA0
-    // 00636280
+    void Calculate_Sinking_Offset(short height, int y);    // 00636280
     void Kill_Cargo(TechnoClass* source);
     void Base_Is_Attacked(const TechnoClass* enemy);
     bool Is_Allowed_To_Retaliate(const TechnoClass* source, const WarheadTypeClass* weapon) const;
@@ -209,7 +208,7 @@ public:
     int Anti_Armor() const;
     int Anti_Infantry() const;
     Coord func_638AF0() const;
-    // 00638C70
+    int Get_Predator_Offset() const;       // 00638C70
     void Assign_Archive_Target(AbstractClass* target);
     // 006391B0
     float Target_Threat(TechnoClass* target, Coord const& firing_coord) const;
