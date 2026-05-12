@@ -20,9 +20,6 @@ class CellClass;
 class XSurface;
 
 
-struct IsoCoordinate : public Point2D {
-};
-
 typedef enum RenderPassEnum {
     RENDERPASS_FIRST,  // Tile surface, ZBuffer, and ABuffer.
     RENDERPASS_SECOND, // Buildings (without animations), Overlays, and Smudges.
@@ -159,27 +156,41 @@ public:
     int LastAIFrame;
     bool field_58;
     bool field_59;
-    IsoCoordinate field_5C;
-    IsoCoordinate field_64;
-    int field_6C;
+
+    /**
+     *  Pixel offset for the upper-left corner of the tactical map.
+     */
+    int TacPixelX;
+    int TacPixelY;
+    int LastTacPixelX;
+    int LastTacPixelY;
+
     double ZoomFactor;
-    int DirtyObjectCount;
-    IsoCoordinate MoveFrom;
-    IsoCoordinate MoveTo;
-    float MoveRate;
+
+    int SelectableCount;
+
+    Point2D MoveFrom;
+    Point2D MoveTo;
+    float MoveSpeed;
     float MoveFactor;
+
     int CellRedrawCount;
     CellClass* CellRedraw[800];
-    IsoCoordinate field_D18;
-    IsoCoordinate field_D20;
-    IsoCoordinate field_D28;
-    bool field_D30;
+
+    Point2D TacticalCoord;
+    Point2D LastTacticalCoord;
+    Point2D DesiredTacticalCoord;
+
+    bool SomeRedrawFlag;
     bool IsToRedraw;
-    bool field_D32;
-    Rect field_D34;
+    bool UnusedBool;
+
+    Rect VisibleCellRect;
+
     Point2D RubberBandStart;
     Point2D RubberBandEnd;
-    int field_D54;
+
+    int WaypointAnimCounter;
     CDTimerClass<FrameTimerClass> WaypointAnimTimer;
     Matrix3D field_D64;
     Matrix3D field_D94;
