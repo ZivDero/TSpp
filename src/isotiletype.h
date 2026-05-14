@@ -76,6 +76,7 @@ public:
     // 004F5A60
     int Ramp_Type(int tile) const;
     // 004F5B00
+    bool Is_Randomized(int tile) const;
     // 004F5B40
     // 004F5CB0
     // 004F6630

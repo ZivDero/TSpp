@@ -1064,6 +1064,7 @@ DEFINE_IMPLEMENTATION(HRESULT STDMETHODCALLTYPE IsometricTileTypeClass::Save(ISt
 // DEFINE_IMPLEMENTATION_DESTRUCTOR(IsometricTileTypeClass::~IsometricTileTypeClass(), 0x004F3330);
 DEFINE_IMPLEMENTATION(LandType IsometricTileTypeClass::Land_Type(int tile) const, 0x004F34B0);
 DEFINE_IMPLEMENTATION(int IsometricTileTypeClass::Ramp_Type(int tile) const, 0x004F5AC0);
+DEFINE_IMPLEMENTATION(bool IsometricTileTypeClass::Is_Randomized(int tile) const, 0x004F5B00);
 DEFINE_IMPLEMENTATION(void IsometricTileTypeClass::Detach(AbstractClass*, bool), 0x004F86F0);
 DEFINE_IMPLEMENTATION(RTTIType IsometricTileTypeClass::Fetch_RTTI() const, 0x004F8A90);
 DEFINE_IMPLEMENTATION(int IsometricTileTypeClass::Get_Object_Size(bool) const, 0x004F8AA0);
