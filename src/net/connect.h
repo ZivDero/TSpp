@@ -91,6 +91,16 @@ public:
     static char* Command_Name(int command);
 
     /**
+     *  Connection-quality stats updated by the ACK/retry logic. Vanilla's
+     *  Multiplayer_Debug_Print reads these via the inline accessors below.
+     */
+    int Num_Resends() const { return NumResends; }
+    int Num_Lost() const { return NumLost; }
+    int Percent_Lost() const { return PercentLost; }
+    int Missed_Overall() const { return MissedOverall; }
+    int Missed_Magic() const { return MissedMagic; }
+
+    /**
      *  The packet "queue"; this non-sequenced version isn't really much of
      *  a queue, but more of a repository.
      */
@@ -113,6 +123,17 @@ protected:
      *  application.
      */
     virtual int Send(char* buf, int buflen, void* extrabuf, int extralen) = 0;
+
+    /**
+     *  Connection-quality counters. Vanilla layout places these immediately
+     *  after the Send vtable slot and before MaxPacketLen -- keep them here
+     *  so TSpp's class size matches vanilla.
+     */
+    int NumResends;
+    int NumLost;
+    int PercentLost;
+    int MissedOverall;
+    int MissedMagic;
 
     /**
      *  This is the maximum packet length, including our own internal header.

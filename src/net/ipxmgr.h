@@ -148,10 +148,16 @@ protected:
     int ConnectionNum;     // local connection #, 0=not logged in
 
     /**
-     *  Array of connection queues
+     *  Array of connection queues.
+     *
+     *  Exposed publicly so debug overlays can iterate per-peer stats
+     *  (Max_Response_Time, Num_Resends, etc.) via Connection[i]->Queue and
+     *  the inline accessors on ConnectionClass.
      */
+public:
     IPXConnClass* Connection[CONNECT_MAX]; // array of connection object ptrs
     int NumConnections;                    // # connection objects in use
+protected:
     IPXGlobalConnClass* GlobalChannel;     // the Global Channel
 
     /**
@@ -160,11 +166,16 @@ protected:
     int CurConnection;
 
     /**
-     *  Timing parameters for all connections
+     *  Timing parameters for all connections. RetryDelta and Timeout are
+     *  exposed publicly for the same reason as Connection[].
      */
+public:
     unsigned long RetryDelta;
+protected:
     unsigned long MaxRetries;
+public:
     unsigned long Timeout;
+protected:
 
     /**
      *  This is a structure that mirrors data in real-mode memory:
