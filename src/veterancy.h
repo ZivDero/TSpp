@@ -55,6 +55,8 @@ public:
         }
         return RANK_ROOKIE;
     }
+    
+    double Get_Experience() const { return Experience; }
 
 private:
     double Experience;
